@@ -3,320 +3,305 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>HomVault Elite - Mobile Optimized</title>
+    <title>HomVault Elite - Themed & Complete</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Arial&display=swap" rel="stylesheet">
     <style>
-        /* Global Resets and Variables */
+        /* --- THEME DEFINITIONS --- */
         :root {
-            --primary-color: #1a2639; /* Deep Slate Blue / Dark Charcoal */
-            --secondary-color: #2c3a50; /* Slightly lighter for cards on mobile */
-            --accent-color: #c19a6b; /* Muted Bronze / Sophisticated Gold */
+            /* Default Theme (Sophisticated Dark - Original) */
+            --primary-color: #1a2639;
+            --secondary-color: #2c3a50;
+            --accent-color: #c19a6b;
             --text-light: #f0f0f0;
-            --text-dark: #1f1f1f; /* For light backgrounds if any */
+            --text-dark: #1f1f1f; /* For text on accent-color bg if accent is light */
             --text-muted-light: #a0a8b8;
             --border-color: #4a5870;
+            --input-bg: #3e4a61;
+            --card-bg: var(--secondary-color);
+            --body-bg: var(--primary-color);
+
+            --font-header: 'Georgia', serif;
+            --font-body: Arial, sans-serif;
+
+            /* Common across themes */
             --success-color: #28a745;
             --warning-color: #ffc107;
             --danger-color: #dc3545;
             --info-color: #17a2b8;
-
-            --font-header: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            --font-body: Arial, Helvetica, sans-serif;
-            --input-bg: #3e4a61;
+            --primary-color-rgb: 26, 38, 57; /* Default RGB for login gradient */
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+        /* Theme 1: Bergdorf Inspired (Light & Elegant) */
+        .theme-bergdorf {
+            --primary-color: #f8f8f4;
+            --secondary-color: #ffffff;
+            --accent-color: #8B7355;
+            --text-light: #333333;
+            --text-dark: #ffffff; /* Text on accent for this theme */
+            --text-muted-light: #666666;
+            --border-color: #dcdcdc;
+            --input-bg: #ffffff;
+            --card-bg: var(--secondary-color);
+            --body-bg: var(--primary-color);
+            --primary-color-rgb: 248, 248, 244;
         }
+        .theme-bergdorf .logo-small, .theme-bergdorf .logo { color: #222222; }
+        .theme-bergdorf .app-header, .theme-bergdorf .mobile-nav { background-color: #ffffff; border-bottom-color: var(--border-color); }
+        .theme-bergdorf .app-header .menu-toggle svg { fill: #333333; }
+        .theme-bergdorf .mobile-nav a { color: #333333; border-bottom-color: #e8e8e8;}
+        .theme-bergdorf .mobile-nav a:hover, .theme-bergdorf .mobile-nav a.active { color: var(--accent-color); }
+        .theme-bergdorf .desktop-nav a { color: #333333; }
+        .theme-bergdorf .desktop-nav a:hover, .theme-bergdorf .desktop-nav a.active { color: var(--accent-color); border-bottom-color: var(--accent-color); }
+        .theme-bergdorf .btn-primary { color: var(--text-dark); }
 
-        html {
-            font-size: 16px; /* Base font size for rem units */
+
+        /* Theme 2: Modern Edgy (Dark Monochrome with Vibrant Accent) */
+        .theme-edgy {
+            --primary-color: #121212;
+            --secondary-color: #1e1e1e;
+            --accent-color: #00f0c0;
+            --text-light: #e0e0e0;
+            --text-dark: #121212;
+            --text-muted-light: #757575;
+            --border-color: #333333;
+            --input-bg: #2a2a2a;
+            --card-bg: var(--secondary-color);
+            --body-bg: var(--primary-color);
+            --font-header: 'Arial', sans-serif;
+            --font-body: 'Arial', sans-serif;
+            --primary-color-rgb: 18, 18, 18;
         }
+        .theme-edgy .btn-primary { color: var(--text-dark); }
 
+        /* Theme 3: Classic Traditional (Warm Creams & Deep Brown/Maroon) */
+        .theme-traditional {
+            --primary-color: #f5f0e1;
+            --secondary-color: #ffffff;
+            --accent-color: #5D4037;
+            --text-light: #3E2723;
+            --text-dark: #ffffff;
+            --text-muted-light: #795548;
+            --border-color: #D7CCC8;
+            --input-bg: #ffffff;
+            --card-bg: var(--secondary-color);
+            --body-bg: var(--primary-color);
+            --primary-color-rgb: 245, 240, 225;
+        }
+        .theme-traditional .btn-primary { color: var(--text-dark); }
+        .theme-traditional .logo-small, .theme-traditional .logo { color: var(--accent-color); }
+        .theme-traditional .app-header, .theme-traditional .mobile-nav { background-color: #EFEBE9; border-bottom-color: var(--border-color); }
+        .theme-traditional .app-header .menu-toggle svg { fill: var(--accent-color); }
+        .theme-traditional .mobile-nav a { color: var(--text-light); border-bottom-color: #D7CCC8;}
+        .theme-traditional .desktop-nav a { color: var(--text-light); }
+
+
+        /* Theme 4: High Contrast Accessibility (Light) */
+        .theme-accessible-light {
+            --primary-color: #ffffff;
+            --secondary-color: #f0f0f0;
+            --accent-color: #005A9C;
+            --text-light: #000000;
+            --text-dark: #ffffff;
+            --text-muted-light: #444444;
+            --border-color: #888888;
+            --input-bg: #ffffff;
+            --card-bg: var(--secondary-color);
+            --body-bg: var(--primary-color);
+            --font-header: 'Arial', sans-serif;
+            --font-body: 'Arial', sans-serif;
+            --primary-color-rgb: 255, 255, 255;
+        }
+        .theme-accessible-light .btn-primary { color: var(--text-dark); }
+        .theme-accessible-light .logo-small, .theme-accessible-light .logo { color: #000000; }
+        .theme-accessible-light .app-header, .theme-accessible-light .mobile-nav { background-color: #e0e0e0; border-bottom-color: var(--border-color); }
+        .theme-accessible-light .app-header .menu-toggle svg { fill: #000000; }
+        .theme-accessible-light .mobile-nav a { color: #000000; border-bottom-color: #cccccc;}
+        .theme-accessible-light .desktop-nav a { color: #000000; }
+
+
+        /* Global Resets and Base Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { font-size: 16px; }
         body {
             font-family: var(--font-body);
-            background-color: var(--primary-color);
+            background-color: var(--body-bg);
             color: var(--text-light);
             line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            overscroll-behavior-y: contain; /* Prevent pull-to-refresh where not needed */
+            display: flex; flex-direction: column; min-height: 100vh;
+            overscroll-behavior-y: contain;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-
-        .app-container {
-            width: 100%;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Screen Management */
-        .screen {
-            display: none;
-            flex-grow: 1;
-            flex-direction: column;
-            padding: 1rem; /* Default padding for mobile */
-            animation: fadeIn 0.3s ease-in-out;
-            overflow-y: auto; /* Allow content scrolling within screen */
-        }
-        .screen.active {
-            display: flex;
-        }
-        /* No padding for login screen container */
+        .app-container { width: 100%; flex-grow: 1; display: flex; flex-direction: column; }
+        .screen { display: none; flex-grow: 1; flex-direction: column; padding: 1rem; animation: fadeIn 0.3s ease-in-out; overflow-y: auto; }
+        .screen.active { display: flex; }
         #loginScreen.screen { padding: 0; }
-
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Typography */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-header);
-            color: var(--text-light);
-            margin-bottom: 0.75em;
-            line-height: 1.2;
-        }
-        h1 { font-size: 1.8rem; } /* Mobile optimized */
-        h2 { font-size: 1.5rem; }
-        h3 { font-size: 1.25rem; }
+        h1, h2, h3, h4, h5, h6 { font-family: var(--font-header); color: var(--text-light); margin-bottom: 0.75em; line-height: 1.2; }
+        h1 { font-size: 1.8rem; } h2 { font-size: 1.5rem; } h3 { font-size: 1.25rem; }
         p { margin-bottom: 1em; font-size: 0.95rem; }
         a { color: var(--accent-color); text-decoration: none; }
         a:hover { text-decoration: underline; }
+        label { display: block; margin-bottom: 0.3rem; font-weight: bold; font-size: 0.9rem; color: var(--text-light); }
 
         /* Common Elements */
-        .logo {
-            font-family: var(--font-header);
-            font-size: 1.6rem;
-            font-weight: bold;
-            color: var(--accent-color);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        .logo-small {
-            font-size: 1.3rem;
-            color: var(--accent-color);
-            font-weight: bold;
-        }
-
+        .logo { font-family: var(--font-header); font-size: 1.6rem; font-weight: bold; color: var(--accent-color); margin-bottom: 1.5rem; text-align: center; letter-spacing: 0.5px; }
+        .logo-small { font-size: 1.3rem; color: var(--accent-color); font-weight: bold; letter-spacing: 0.5px; }
         .btn {
-            display: inline-block;
-            padding: 0.75rem 1.25rem; /* Mobile friendly padding */
-            border-radius: 6px;
-            font-family: var(--font-header);
-            font-weight: bold;
-            text-align: center;
-            cursor: pointer;
-            transition: background-color 0.2s ease, transform 0.1s ease;
-            border: none;
-            font-size: 0.95rem;
-            line-height: 1.4;
-            width: 100%; /* Default to full width for mobile */
-            margin-bottom: 0.5rem;
+            display: inline-block; padding: 0.75rem 1.25rem; border-radius: 6px; font-family: var(--font-body); font-weight: bold;
+            text-align: center; cursor: pointer; transition: background-color 0.2s ease, transform 0.1s ease, border-color 0.2s ease, color 0.2s ease;
+            border: 1px solid transparent; font-size: 0.95rem; line-height: 1.4; width: 100%; margin-bottom: 0.5rem;
         }
         .btn:active { transform: scale(0.98); }
-
-        .btn-primary { background-color: var(--accent-color); color: var(--primary-color); }
-        .btn-primary:hover { background-color: #d4af8a; }
+        .btn-primary { background-color: var(--accent-color); color: var(--text-dark); border-color: var(--accent-color); }
+        .btn-primary:hover { filter: brightness(110%); }
         .btn-secondary { background-color: var(--secondary-color); color: var(--text-light); border: 1px solid var(--accent-color); }
-        .btn-secondary:hover { background-color: #4a5870; }
-        .btn-danger { background-color: var(--danger-color); color: var(--text-light); }
-        .btn-success { background-color: var(--success-color); color: var(--text-light); }
-        .btn-link { background: none; color: var(--accent-color); padding: 0.5rem; text-decoration: underline; width: auto;}
-        .btn-icon { padding: 0.5rem; width: auto; background: none; }
+        .btn-secondary:hover { background-color: var(--accent-color); color: var(--text-dark); }
+        .btn-danger { background-color: var(--danger-color); color: #ffffff; border-color: var(--danger-color); }
+        .btn-success { background-color: var(--success-color); color: #ffffff; border-color: var(--success-color); }
+        .btn-link { background: none; color: var(--accent-color); padding: 0.5rem; text-decoration: underline; width: auto; border: none;}
+        .btn-icon { padding: 0.5rem; width: auto; background: none; border: none; }
         .btn-icon svg { width: 24px; height: 24px; fill: var(--accent-color); }
 
-
-        input[type="text"],
-        input[type="email"],
-        input[type="password"],
-        input[type="date"],
-        input[type="number"],
-        input[type="file"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 0.75rem;
-            margin-bottom: 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            background-color: var(--input-bg);
-            color: var(--text-light);
-            font-family: var(--font-body);
-            font-size: 1rem;
-            appearance: none; /* For custom select arrow */
-            -webkit-appearance: none;
-            -moz-appearance: none;
+        input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="number"], input[type="file"], select, textarea {
+            width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid var(--border-color); border-radius: 6px;
+            background-color: var(--input-bg); color: var(--text-light); font-family: var(--font-body); font-size: 1rem;
+            appearance: none; -webkit-appearance: none; -moz-appearance: none;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
-        select {
+        select { /* Default select arrow, will be overridden by JS based on theme */
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23c19a6b'%3E%3Cpath fill-rule='evenodd' d='M4.22 6.03a.75.75 0 00-1.06 1.06l3.5 3.5a.75.75 0 001.06 0l3.5-3.5a.75.75 0 00-1.06-1.06L8 8.94 4.22 6.03z' clip-rule='evenodd'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 0.75rem center;
-            background-size: 1em;
-            padding-right: 2.5rem; /* Space for arrow */
+            background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 1em; padding-right: 2.5rem;
         }
-
         input::placeholder, textarea::placeholder { color: var(--text-muted-light); opacity: 0.7; }
-        input[type="file"] { padding: 0.5rem; } /* Slight adjustment for file input */
-        label { display: block; margin-bottom: 0.3rem; font-weight: bold; font-size: 0.9rem; }
-
-        .card {
-            background-color: var(--secondary-color);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-
+        input[type="file"] { padding: 0.5rem; }
+        .card { background-color: var(--card-bg); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: background-color 0.3s ease; }
+        .theme-edgy .card { box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
         .icon { width: 20px; height: 20px; fill: currentColor; margin-right: 8px; vertical-align: middle; }
         .icon-accent { fill: var(--accent-color); }
 
         /* Utility Classes */
-        .text-center { text-align: center; }
-        .mb-1 { margin-bottom: 0.5rem !important; } .mb-2 { margin-bottom: 1rem !important; } .mb-3 { margin-bottom: 1.5rem !important; }
+        .text-center { text-align: center; } .mb-1 { margin-bottom: 0.5rem !important; } .mb-2 { margin-bottom: 1rem !important; } .mb-3 { margin-bottom: 1.5rem !important; }
         .mt-1 { margin-top: 0.5rem !important; } .mt-2 { margin-top: 1rem !important; } .mt-3 { margin-top: 1.5rem !important; }
         .d-flex { display: flex; } .justify-between { justify-content: space-between; } .align-center { align-items: center; }
         .flex-wrap { flex-wrap: wrap; } .gap-1 { gap: 0.5rem; } .gap-2 { gap: 1rem; }
-        .w-auto { width: auto !important; }
-        .hidden { display: none !important; }
-        .text-sm { font-size: 0.85rem; }
-        .text-muted { color: var(--text-muted-light); }
-        .font-bold { font-weight: bold; }
+        .w-auto { width: auto !important; } .hidden { display: none !important; }
+        .text-sm { font-size: 0.85rem; } .text-muted { color: var(--text-muted-light); } .font-bold { font-weight: bold; }
 
-        /* Header for Logged-in Screens */
+        /* Header */
         .app-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.8rem 1rem;
-            background-color: var(--primary-color); /* Solid background for header */
-            border-bottom: 1px solid var(--border-color);
-            position: sticky; /* Sticky header for mobile */
-            top: 0;
-            z-index: 100;
+            display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 1rem;
+            background-color: var(--primary-color); border-bottom: 1px solid var(--border-color);
+            position: sticky; top: 0; z-index: 100; transition: background-color 0.3s ease, border-color 0.3s ease;
         }
-        .app-header .user-greeting { display: none; } /* Hidden on mobile, shown on wider screens */
+        .app-header .user-greeting { display: none; }
         .app-header .menu-toggle { background: none; border: none; padding: 0; }
         .app-header .menu-toggle svg { width: 28px; height: 28px; fill: var(--accent-color); }
+        .theme-switcher-btn {
+            padding: 0.4rem 0.6rem; font-size: 0.8rem; width: auto; margin-left: auto; margin-right: 1rem;
+            border: 1px solid var(--accent-color); background-color: transparent; color: var(--accent-color);
+        }
+        .theme-switcher-btn:hover { background-color: var(--accent-color); color: var(--text-dark); }
+        .mobile-only-spacer { display: inline-block; } /* For mobile */
+        @media (min-width: 768px) { .mobile-only-spacer { display: none; } }
 
 
-        /* Mobile Navigation (Off-canvas or Fullscreen Overlay) */
+        /* Mobile Navigation */
         .mobile-nav {
-            position: fixed;
-            top: 0;
-            left: -100%; /* Start off-screen */
-            width: 80%;
-            max-width: 300px;
-            height: 100%;
-            background-color: var(--secondary-color);
-            box-shadow: 2px 0 10px rgba(0,0,0,0.3);
-            z-index: 1000;
-            transition: left 0.3s ease-in-out;
-            padding: 1rem;
-            overflow-y: auto;
+            position: fixed; top: 0; left: -100%; width: 80%; max-width: 300px; height: 100%;
+            background-color: var(--secondary-color); box-shadow: 2px 0 10px rgba(0,0,0,0.3); z-index: 1000;
+            transition: left 0.3s ease-in-out, background-color 0.3s ease; padding: 1rem; overflow-y: auto;
         }
         .mobile-nav.open { left: 0; }
         .mobile-nav .logo-small { margin-bottom: 1.5rem; }
         .mobile-nav a {
-            display: block;
-            color: var(--text-light);
-            padding: 0.8rem 0.5rem;
-            font-size: 1.1rem;
-            border-bottom: 1px solid var(--border-color);
-            font-family: var(--font-header);
+            display: block; color: var(--text-light); padding: 0.8rem 0.5rem; font-size: 1.1rem;
+            border-bottom: 1px solid var(--border-color); font-family: var(--font-header);
+            transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
         }
         .mobile-nav a:last-child { border-bottom: none; }
         .mobile-nav a.active, .mobile-nav a:hover { color: var(--accent-color); background-color: rgba(0,0,0,0.1); }
-        .nav-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 999;
-            display: none; /* Initially hidden */
-        }
+        .nav-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 999; display: none; }
         .nav-overlay.open { display: block; }
 
-
-        /* Login Screen */
+        /* Login Screen Specifics */
         #loginScreen {
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(rgba(26, 38, 57, 0.9), rgba(26, 38, 57, 0.9)),
+            justify-content: center; align-items: center;
+            background: linear-gradient(rgba(var(--primary-color-rgb), 0.9), rgba(var(--primary-color-rgb), 0.9)),
                         url('https://images.unsplash.com/photo-1555696964-8f6cf590935a?auto=format&fit=crop&w=800&q=60') no-repeat center center / cover;
         }
-        .login-container {
-            background-color: rgba(30, 45, 68, 0.95);
-            padding: 1.5rem;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-        }
+        .login-container { background-color: var(--card-bg); opacity: 0.97; padding: 1.5rem; border-radius: 8px; width: 90%; max-width: 400px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); }
         .login-options { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1rem; color: var(--text-muted-light); }
         .login-options label { display: flex; align-items: center; }
         .login-options input[type="checkbox"] { width: auto; margin-right: 5px; }
         .biometric-login { text-align: center; margin-top: 1rem; color: var(--text-muted-light); }
         .biometric-login svg { width: 30px; height: 30px; fill: var(--accent-color); margin-top: 5px; }
 
-        /* Dashboard */
+
+        /* Specific element styling for light themes (inherited styles should cover most) */
+        .theme-bergdorf .dashboard-property-card-info p,
+        .theme-traditional .dashboard-property-card-info p,
+        .theme-accessible-light .dashboard-property-card-info p,
+        .theme-bergdorf .item-info p,
+        .theme-traditional .item-info p,
+        .theme-accessible-light .item-info p,
+        .theme-bergdorf .metadata-item span,
+        .theme-traditional .metadata-item span,
+        .theme-accessible-light .metadata-item span,
+        .theme-bergdorf .timeline-details,
+        .theme-traditional .timeline-details,
+        .theme-accessible-light .timeline-details { color: var(--text-muted-light); }
+
+        .theme-bergdorf .qr-code-display img,
+        .theme-traditional .qr-code-display img,
+        .theme-accessible-light .qr-code-display img { background-color: #f0f0f0; }
+        .theme-bergdorf .timeline-event::before,
+        .theme-traditional .timeline-event::before,
+        .theme-accessible-light .timeline-event::before,
+        .theme-bergdorf .move-progress-tracker li::before,
+        .theme-traditional .move-progress-tracker li::before,
+        .theme-accessible-light .move-progress-tracker li::before { border-color: var(--body-bg); }
+
+
+        /* Dashboard Screen */
         .dashboard-section { margin-bottom: 1.5rem; }
-        .dashboard-property-card {
-            display: flex; align-items: center; gap: 1rem;
-            padding: 0.8rem;
-        }
+        .dashboard-property-card { display: flex; align-items: center; gap: 1rem; padding: 0.8rem; }
         .dashboard-property-card img { width: 60px; height: 60px; object-fit: cover; border-radius: 6px; }
         .dashboard-property-card-info h4 { margin-bottom: 0.2rem; font-size: 1.1rem; color: var(--accent-color); }
         .dashboard-property-card-info p { font-size: 0.85rem; color: var(--text-muted-light); margin-bottom: 0; }
-
-        .activity-feed-item, .upcoming-move-item {
-            padding: 0.6rem 0; border-bottom: 1px solid var(--border-color); font-size: 0.9rem;
-        }
+        .activity-feed-item, .upcoming-move-item { padding: 0.6rem 0; border-bottom: 1px solid var(--border-color); font-size: 0.9rem; }
         .activity-feed-item:last-child, .upcoming-move-item:last-child { border-bottom: none; }
         .activity-feed-item strong, .upcoming-move-item strong { color: var(--accent-color); }
+        .data-visualization-placeholder { text-align: center; color: var(--text-muted-light); padding: 1rem; }
 
-        /* Inventory Browser */
+        /* Inventory Browser Screen */
         .inventory-controls { margin-bottom: 1rem; }
         .search-filter-stack .btn { margin-top: 0.5rem; }
-        .filter-panel {
-            background-color: var(--primary-color); /* Darker bg for panel */
-            padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border-color);
-            display: none; /* Initially hidden by JS */
-        }
+        .filter-panel { background-color: var(--primary-color); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border-color); display: none; }
         .filter-panel.open { display: block; }
         .filter-group { margin-bottom: 1rem; }
         .view-options { display: flex; justify-content: center; gap: 0.5rem; margin: 0.5rem 0 1rem 0; }
         .view-options button { width: auto; padding: 0.5rem 1rem; font-size: 0.9rem;}
-
-        .inventory-list-item, .inventory-grid-item {
-            background-color: var(--secondary-color); border-radius: 8px; padding: 0.8rem;
-            border: 1px solid var(--border-color); display: flex; gap: 0.8rem; align-items: center;
-            position: relative; /* For checkbox */
-            margin-bottom: 0.8rem; /* Spacing for list items */
-        }
+        .inventory-list-item, .inventory-grid-item { background-color: var(--card-bg); border-radius: 8px; padding: 0.8rem; border: 1px solid var(--border-color); display: flex; gap: 0.8rem; align-items: center; position: relative; margin-bottom: 0.8rem; }
         .item-thumbnail { width: 70px; height: 70px; object-fit: cover; border-radius: 4px; flex-shrink: 0;}
         .item-info { flex-grow: 1; }
         .item-info h5 { color: var(--text-light); margin-bottom: 0.2rem; font-size: 1rem; }
         .item-info p { font-size: 0.8rem; color: var(--text-muted-light); margin-bottom: 2px; }
         .item-info .item-id { font-size: 0.75rem; color: var(--accent-color); }
-        .item-checkbox-container { margin-left: auto; padding: 0.5rem; } /* Make checkbox easier to tap */
+        .item-checkbox-container { margin-left: auto; padding: 0.5rem; }
         .item-checkbox { transform: scale(1.3); }
-
-        /* Inventory Grid specific (overrides list styles for grid view) */
         .inventory-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
         .inventory-grid .inventory-grid-item { flex-direction: column; align-items: stretch; text-align: center;}
         .inventory-grid .inventory-grid-item .item-thumbnail { width: 100%; height: 120px; margin-bottom: 0.5rem; }
         .inventory-grid .inventory-grid-item .item-checkbox-container { position: absolute; top: 5px; right: 5px; background-color: rgba(0,0,0,0.2); border-radius: 50%; }
+        .sticky-bottom-actions { position: sticky; bottom:0; background-color: var(--primary-color); padding:0.5rem; box-shadow: 0 -2px 5px rgba(0,0,0,0.1); z-index: 50;}
 
 
         /* Item Detail Page */
-        .item-gallery .main-image {
-            width: 100%; max-height: 300px; object-fit: contain; background-color: var(--secondary-color);
-            border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 1rem; padding: 0.5rem;
-        }
+        .item-gallery .main-image { width: 100%; max-height: 300px; object-fit: contain; background-color: var(--secondary-color); border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 1rem; padding: 0.5rem; }
         .item-thumbnails { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; }
         .item-thumbnails img { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; cursor: pointer; border: 2px solid transparent; }
         .item-thumbnails img.active, .item-thumbnails img:hover { border-color: var(--accent-color); }
@@ -326,75 +311,56 @@
         .metadata-item strong { color: var(--text-light); flex-basis: 40%; }
         .metadata-item span { color: var(--text-muted-light); text-align: right; flex-basis: 60%; word-break: break-word;}
         .qr-code-display img { width: 100px; height: 100px; background-color: white; padding: 5px; border-radius: 4px; margin: 0.5rem auto; display: block;}
-
-        /* Location History Timeline - Mobile Optimized */
         .location-history-timeline { list-style: none; padding-left: 0; }
         .timeline-event { padding-left: 20px; position: relative; border-left: 2px solid var(--accent-color); padding-bottom: 1rem; margin-left: 5px; }
-        .timeline-event::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; border-radius: 50%; background-color: var(--accent-color); border: 2px solid var(--primary-color); }
+        .timeline-event::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; border-radius: 50%; background-color: var(--accent-color); border: 2px solid var(--body-bg); }
         .timeline-event:last-child { border-left-color: transparent; }
         .timeline-date { font-weight: bold; font-size: 0.9rem; }
         .timeline-details { font-size: 0.85rem; color: var(--text-muted-light); }
 
-
         /* Move Request / Add Item Form */
-        .form-section { background-color: var(--secondary-color); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; }
+        .form-section { background-color: var(--card-bg); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; }
         .selected-items-preview .item-preview { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 4px; margin-bottom: 0.5rem; font-size: 0.9rem;}
         .selected-items-preview img { width: 40px; height: 40px; object-fit: cover; border-radius: 4px;}
         #itemImagePreview { max-width: 100px; max-height: 100px; margin-top: 0.5rem; border-radius: 4px; border: 1px solid var(--border-color); }
 
-        /* Move Management */
-        .move-list-item {
-            background-color: var(--secondary-color); padding: 0.8rem; border-radius: 8px;
-            margin-bottom: 1rem; border-left: 5px solid; /* Status color */
-        }
-        .move-status-requested { border-left-color: var(--info-color); }
-        .move-status-scheduled { border-left-color: var(--warning-color); }
-        .move-status-inprogress { border-left-color: var(--accent-color); }
-        .move-status-completed { border-left-color: var(--success-color); }
-        .move-status-cancelled { border-left-color: var(--danger-color); }
-
+        /* Move Management & Detail */
+        .move-list-item { border-left: 5px solid; }
+        .move-status-requested { border-left-color: var(--info-color); } .move-status-requested .move-status { background-color: var(--info-color); }
+        .move-status-scheduled { border-left-color: var(--warning-color); } .move-status-scheduled .move-status { background-color: var(--warning-color); color: var(--text-dark); }
+        .move-status-inprogress { border-left-color: var(--accent-color); } .move-status-inprogress .move-status { background-color: var(--accent-color); color: var(--text-dark); } /* Check text-dark here */
+        .move-status-completed { border-left-color: var(--success-color); } .move-status-completed .move-status { background-color: var(--success-color); }
+        .move-status-cancelled { border-left-color: var(--danger-color); } .move-status-cancelled .move-status { background-color: var(--danger-color); }
         .move-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
         .move-id { font-weight: bold; font-size: 1rem; }
-        .move-status { padding: 0.25rem 0.6rem; border-radius: 15px; font-size: 0.75rem; font-weight: bold; color: var(--primary-color); }
-        .move-status-requested .move-status { background-color: var(--info-color); }
-        .move-status-scheduled .move-status { background-color: var(--warning-color); }
-        .move-status-inprogress .move-status { background-color: var(--accent-color); }
-        .move-status-completed .move-status { background-color: var(--success-color); }
-        .move-status-cancelled .move-status { background-color: var(--danger-color); }
+        .move-status { padding: 0.25rem 0.6rem; border-radius: 15px; font-size: 0.75rem; font-weight: bold; color: #ffffff; } /* Default white text for status pills */
         .move-details p { font-size: 0.85rem; margin-bottom: 0.25rem; }
-
-        /* Visual Move Progress Tracker */
         .move-progress-tracker { display: flex; justify-content: space-between; margin-bottom: 1rem; list-style: none; padding: 0;}
-        .move-progress-tracker li {
-            flex: 1; text-align: center; font-size: 0.7rem; color: var(--text-muted-light); position: relative;
-            padding-top: 20px; /* Space for dot */
-        }
-        .move-progress-tracker li::before { /* Dot */
-            content: ''; width: 10px; height: 10px; background: var(--border-color); border-radius: 50%;
-            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-            border: 2px solid var(--primary-color);
-        }
-        .move-progress-tracker li::after { /* Line */
-            content: ''; height: 2px; background: var(--border-color);
-            position: absolute; top: 4px; left: 50%; width: 100%; z-index: -1;
-        }
-        .move-progress-tracker li:first-child::after { left: 50%; width: 50%;}
-        .move-progress-tracker li:last-child::after { width: 50%; }
+        .move-progress-tracker li { flex: 1; text-align: center; font-size: 0.7rem; color: var(--text-muted-light); position: relative; padding-top: 20px; }
+        .move-progress-tracker li::before { content: ''; width: 10px; height: 10px; background: var(--border-color); border-radius: 50%; position: absolute; top: 0; left: 50%; transform: translateX(-50%); border: 2px solid var(--body-bg); }
+        .move-progress-tracker li::after { content: ''; height: 2px; background: var(--border-color); position: absolute; top: 4px; left: 50%; width: 100%; z-index: -1; }
+        .move-progress-tracker li:first-child::after { left: 50%; width: 50%;} .move-progress-tracker li:last-child::after { width: 50%; }
         .move-progress-tracker li.completed, .move-progress-tracker li.active { color: var(--text-light); }
-        .move-progress-tracker li.completed::before { background: var(--success-color); }
-        .move-progress-tracker li.completed::after { background: var(--success-color); }
+        .move-progress-tracker li.completed::before { background: var(--success-color); } .move-progress-tracker li.completed::after { background: var(--success-color); }
         .move-progress-tracker li.active::before { background: var(--accent-color); animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(193, 154, 107, 0.7); } 50% { box-shadow: 0 0 0 5px rgba(193, 154, 107, 0); } }
+        @keyframes pulse {
+             0%, 100% { box-shadow: 0 0 0 0 rgba(var(--r, 193), var(--g, 154), var(--b, 107), 0.7); } /* Default accent RGB */
+             50% { box-shadow: 0 0 0 5px rgba(var(--r, 193), var(--g, 154), var(--b, 107), 0); }
+        }
+        .theme-edgy @keyframes pulse { /* Edgy accent RGB */
+             0%, 100% { box-shadow: 0 0 0 0 rgba(0, 240, 192, 0.7); }
+             50% { box-shadow: 0 0 0 5px rgba(0, 240, 192, 0); }
+        }
+        /* Add similar keyframes for other themes if their accent-color-rgb needs specific definition for pulse */
+
 
         /* Property Management */
-        .property-manage-card {
-            display: flex; flex-direction: column; /* Stack image and content */
-        }
+        .property-manage-card { display: flex; flex-direction: column; }
         .property-manage-card img { width: 100%; height: 150px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px;}
         .property-manage-card-content { padding: 1rem; }
         .property-stats p { font-size: 0.85rem; margin-bottom: 3px; }
 
-        /* Settings/Profile Screen */
+        /* Settings Screen */
         .settings-group { margin-bottom: 1.5rem; }
         .settings-group h4 { color: var(--accent-color); border-bottom: 1px solid var(--border-color); padding-bottom: 0.3rem; margin-bottom: 0.5rem;}
         .notification-preference { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.9rem;}
@@ -406,100 +372,83 @@
         input:checked + .slider:before { transform: translateX(18px); }
 
 
-        /* Role Switcher Demo */
-        .role-switcher { margin: 0.5rem 0 1rem; }
-        .role-switcher select { margin-bottom: 0; }
-
-
         /* Desktop and Larger Tablet Styles */
         @media (min-width: 768px) {
             .screen { padding: 1.5rem 2rem; }
             .app-header { padding: 1rem 2rem; }
-            .app-header .user-greeting { display: inline; color: var(--text-muted-light); margin-right: auto; margin-left: 1.5rem; }
-            .app-header .menu-toggle { display: none; } /* Hide hamburger on desktop */
-            .mobile-nav, .nav-overlay { display: none !important; } /* Ensure mobile nav is hidden */
-
-            /* Desktop Navigation (inline in header) */
-            .desktop-nav { display: flex; align-items: center; }
-            .desktop-nav a {
-                margin-left: 1.5rem; color: var(--text-light); font-size: 1rem;
-                padding: 0.5rem 0; border-bottom: 2px solid transparent;
-            }
+            .app-header .user-greeting { display: inline; color: var(--text-muted-light); margin-right: 1rem; margin-left: 1.5rem; }
+            .app-header .menu-toggle { display: none; }
+            .mobile-nav, .nav-overlay { display: none !important; }
+            .desktop-nav { display: flex; align-items: center; margin-left: auto; }
+            .desktop-nav a { margin-left: 1.5rem; color: var(--text-light); font-size: 1rem; font-family: var(--font-header); padding: 0.5rem 0; border-bottom: 2px solid transparent; transition: color 0.3s ease, border-color 0.3s ease; }
             .desktop-nav a:hover, .desktop-nav a.active { color: var(--accent-color); border-bottom-color: var(--accent-color); }
-
+            .theme-switcher-btn { margin-left: 1.5rem; margin-right: 0;}
             h1 { font-size: 2.2rem; } h2 { font-size: 1.8rem; } h3 { font-size: 1.5rem; }
-            .btn { width: auto; margin-bottom: 0; } /* Buttons not full width by default */
-            .btn.full-width-mobile { width: 100%; } /* Add this class if needed for specific buttons to remain full-width on mobile */
-            @media (max-width: 767px) { .btn:not(.w-auto) { width: 100%;} } /* Ensure buttons are full width on mobile unless .w-auto */
-
-
+            .btn { width: auto; margin-bottom: 0; }
+            @media (max-width: 767px) { .btn:not(.w-auto) { width: 100%;} }
             .login-container { padding: 2.5rem; }
-
             .dashboard-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
-            .dashboard-property-cards-desktop {
-                display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
-            }
-             .dashboard-property-card {
-                flex-direction: column; align-items: flex-start;
-            }
+            .dashboard-property-cards-desktop { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+            .dashboard-property-card { flex-direction: column; align-items: flex-start; }
             .dashboard-property-card img { width: 100%; height: 120px; margin-bottom: 0.5rem; }
-
-
             .inventory-controls { display: flex; justify-content: space-between; align-items: center; }
             .inventory-controls .search-filter-stack { display: flex; gap: 1rem; align-items: center; }
             .inventory-controls .search-filter-stack input { width: auto; min-width: 250px; margin-bottom:0;}
             .inventory-controls .search-filter-stack .btn { margin-top: 0; }
-            .filter-panel { max-width: 800px; } /* Limit width of filter panel */
+            .filter-panel { max-width: 800px; }
             .filter-panel .filter-columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;}
-
-            .inventory-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; } /* More columns for grid */
-            .inventory-list .inventory-list-item { padding: 1rem; }
-            .inventory-list .item-thumbnail { width: 80px; height: 80px; }
-
+            .inventory-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; }
+            .inventory-list .inventory-list-item { padding: 1rem; } .inventory-list .item-thumbnail { width: 80px; height: 80px; }
             .item-detail-layout { display: grid; grid-template-columns: 3fr 2fr; gap: 2rem; }
-            .item-gallery .main-image { max-height: 450px; }
-            .item-thumbnails img { width: 70px; height: 70px; }
-
+            .item-gallery .main-image { max-height: 450px; } .item-thumbnails img { width: 70px; height: 70px; }
             .move-request-form-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-
-            .property-management-cards-desktop {
-                 display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;
-            }
+            .property-management-cards-desktop { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
         }
 
     </style>
 </head>
-<body>
+<body class="theme-default"> <!-- Start with default theme -->
     <div class="app-container">
 
         <header class="app-header">
-            <button class="menu-toggle" id="menuToggleBtn">
+            <button class="menu-toggle" id="menuToggleBtn" aria-label="Open navigation menu">
                 <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
             </button>
             <div class="logo-small">HomVault Elite</div>
             <span class="user-greeting">Welcome, <span id="userName">Client</span></span>
-            <nav class="desktop-nav" id="desktopNav">
+            
+            <nav class="desktop-nav" id="desktopNav" aria-label="Main navigation">
                 <!-- Desktop nav links will be populated by JS -->
             </nav>
-            <div style="width: 28px;"></div> <!-- Spacer for mobile to balance menu toggle -->
+            <button class="btn theme-switcher-btn" id="themeSwitcherBtn" aria-label="Change color palette">Palette</button>
+            <div style="width: 28px;" class="mobile-only-spacer" aria-hidden="true"></div>
         </header>
 
-        <nav class="mobile-nav" id="mobileNav">
+        <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
             <div class="logo-small" style="text-align: center;">HomVault Elite</div>
             <!-- Mobile nav links will be populated by JS -->
         </nav>
-        <div class="nav-overlay" id="navOverlay"></div>
+        <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
 
+        <div id="themePaletteModal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="themePaletteModalTitle">
+            <div style="background-color: var(--card-bg); padding: 1.5rem; border-radius: 8px; width: 100%; max-width: 400px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                <h3 id="themePaletteModalTitle" style="color: var(--text-light); text-align:center; margin-bottom:1.5rem;">Select Color Palette</h3>
+                <div id="paletteOptionsContainer" style="display: grid; grid-template-columns: 1fr; gap: 0.8rem;">
+                    <!-- Palette options will be injected by JS -->
+                </div>
+                <button class="btn btn-secondary w-auto" id="closePaletteModalBtn" style="margin-top: 1.5rem; display:block; margin-left:auto; margin-right:auto;" aria-label="Close palette selector">Close</button>
+            </div>
+        </div>
 
         <!-- Login Screen -->
-        <div id="loginScreen" class="screen active">
+        <main id="loginScreen" class="screen active" role="main">
             <div class="login-container">
                 <div class="logo">HomVault Elite</div>
                 <form id="loginForm">
                     <label for="email">Email Address</label>
-                    <input type="email" id="email" placeholder="you@example.com" required value="client@example.com">
+                    <input type="email" id="email" placeholder="you@example.com" required value="client@example.com" aria-required="true">
                     <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="••••••••" required value="password123">
+                    <input type="password" id="password" placeholder="••••••••" required value="password123" aria-required="true">
                     <div class="login-options">
                         <label><input type="checkbox" id="rememberMe"> Remember Me</label>
                         <a href="#">Forgot Password?</a>
@@ -508,20 +457,19 @@
                 </form>
                 <div class="biometric-login">
                     <p class="text-sm">Or login with Biometrics</p>
-                    <svg viewBox="0 0 24 24"><path d="M6.5 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm11 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-2.03 0-3.87-.74-5.32-1.95.62-.68 1.38-1.23 2.23-1.64.52-.25 1.11-.36 1.7-.36h2.77c.59 0 1.18.12 1.7.36.85.41 1.61.96 2.23 1.64C15.87 19.26 14.03 20 12 20zm0-3c-.93 0-1.79-.28-2.5-.76.9-.61 1.62-1.42 1.98-2.36.18-.46.28-.96.28-1.48 0-.9-.36-1.71-1.03-2.36-.3-.29-.65-.52-1.03-.69V8.25c0-.41-.34-.75-.75-.75s-.75.34-.75.75v1.08c-.38.17-.72.4-1.03.69-.67.65-1.03 1.46-1.03 2.36 0 .52.1 1.02.28 1.48.36.94 1.07 1.75 1.98 2.36C10.79 16.72 9.93 17 9 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5h2c0-3.86-3.14-7-7-7s-7 3.14-7 7 3.14 7 7 7c.28 0 .55-.02.82-.05.05-.38.14-.75.28-1.11-.46-.11-.94-.14-1.1-.14z"/></svg>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm11 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-2.03 0-3.87-.74-5.32-1.95.62-.68 1.38-1.23 2.23-1.64.52-.25 1.11-.36 1.7-.36h2.77c.59 0 1.18.12 1.7.36.85.41 1.61.96 2.23 1.64C15.87 19.26 14.03 20 12 20zm0-3c-.93 0-1.79-.28-2.5-.76.9-.61 1.62-1.42 1.98-2.36.18-.46.28-.96.28-1.48 0-.9-.36-1.71-1.03-2.36-.3-.29-.65-.52-1.03-.69V8.25c0-.41-.34-.75-.75-.75s-.75.34-.75.75v1.08c-.38.17-.72.4-1.03.69-.67.65-1.03 1.46-1.03 2.36 0 .52.1 1.02.28 1.48.36.94 1.07 1.75 1.98 2.36C10.79 16.72 9.93 17 9 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5h2c0-3.86-3.14-7-7-7s-7 3.14-7 7 3.14 7 7 7c.28 0 .55-.02.82-.05.05-.38.14-.75.28-1.11-.46-.11-.94-.14-1.1-.14z"/></svg>
                 </div>
                  <div class="text-center mt-2">
                     <p class="text-sm text-muted">Demo: No actual login. Click Login to proceed.</p>
                 </div>
             </div>
-        </div>
+        </main>
 
         <!-- Client Dashboard Screen -->
-        <div id="dashboardScreen" class="screen">
-            <!-- Role Switcher Demo -->
+        <main id="dashboardScreen" class="screen" role="main">
             <div class="role-switcher card">
                 <label for="roleSelect">Demo: View As</label>
-                <select id="roleSelect">
+                <select id="roleSelect" aria-controls="clientDashboardContent designerDashboardContent moverDashboardContent">
                     <option value="client">Client</option>
                     <option value="designer">Designer / Admin</option>
                     <option value="mover">Mover</option>
@@ -530,46 +478,46 @@
 
             <div id="clientDashboardContent">
                 <h2>Client Dashboard</h2>
-                <section class="dashboard-section quick-actions">
-                    <h3>Quick Actions</h3>
+                <section class="dashboard-section quick-actions" aria-labelledby="quickActionsTitleClient">
+                    <h3 id="quickActionsTitleClient" class="hidden">Client Quick Actions</h3>
                     <button class="btn btn-primary mb-1" data-target="inventoryBrowserScreen">
-                        <svg class="icon" viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
                         View Full Inventory
                     </button>
                     <button class="btn btn-primary mb-1" data-target="moveRequestScreen">
-                        <svg class="icon" viewBox="0 0 24 24"><path d="M17.66 7.93L12 2.27 6.34 7.93a8 8 0 1011.32 0zM12 17.5A5.5 5.5 0 016.5 12H4a8 8 0 002.34 5.93L12 22.27l5.66-4.34A8 8 0 0012 4a8.04 8.04 0 00-2 .31V6.5A5.5 5.5 0 0112 6.5a5.49 5.49 0 014.16 9.34L17.5 17.5zM10 10h4v4h-4z"/></svg>
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.66 7.93L12 2.27 6.34 7.93a8 8 0 1011.32 0zM12 17.5A5.5 5.5 0 016.5 12H4a8 8 0 002.34 5.93L12 22.27l5.66-4.34A8 8 0 0012 4a8.04 8.04 0 00-2 .31V6.5A5.5 5.5 0 0112 6.5a5.49 5.49 0 014.16 9.34L17.5 17.5zM10 10h4v4h-4z"/></svg>
                         Request a Move
                     </button>
                      <button class="btn btn-secondary" data-target="addItemScreen">
-                        <svg class="icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
                         Add New Item
                     </button>
                 </section>
 
                 <div class="dashboard-grid">
                     <div>
-                        <section class="dashboard-section">
-                            <h3>Property Overview</h3>
+                        <section class="dashboard-section" aria-labelledby="propertyOverviewTitleClient">
+                            <h3 id="propertyOverviewTitleClient">Property Overview</h3>
                             <div id="dashboardPropertyCards" class="dashboard-property-cards-desktop">
                                 <!-- Property cards will be injected by JS -->
                             </div>
                         </section>
-                        <section class="dashboard-section">
-                            <h3>Recent Activity</h3>
+                        <section class="dashboard-section" aria-labelledby="recentActivityTitleClient">
+                            <h3 id="recentActivityTitleClient">Recent Activity</h3>
                             <div class="card">
-                                <ul id="recentActivityFeed" class="list-unstyled"></ul>
+                                <ul id="recentActivityFeed" class="list-unstyled" aria-live="polite"></ul>
                             </div>
                         </section>
                     </div>
                     <div>
-                        <section class="dashboard-section">
-                            <h3>Upcoming Moves</h3>
+                        <section class="dashboard-section" aria-labelledby="upcomingMovesTitleClient">
+                            <h3 id="upcomingMovesTitleClient">Upcoming Moves</h3>
                             <div class="card">
-                                <ul id="upcomingMovesList" class="list-unstyled"></ul>
+                                <ul id="upcomingMovesList" class="list-unstyled" aria-live="polite"></ul>
                             </div>
                         </section>
-                        <section class="dashboard-section">
-                             <h3>Item Distribution</h3>
+                        <section class="dashboard-section" aria-labelledby="itemDistributionTitleClient">
+                             <h3 id="itemDistributionTitleClient">Item Distribution</h3>
                              <div class="card data-visualization-placeholder text-center text-muted">
                                  <p>Elegant Donut Chart / Bar Graph Placeholder for Item Distribution</p>
                                  <p class="text-sm">(e.g., by property or category)</p>
@@ -581,15 +529,15 @@
 
             <div id="designerDashboardContent" class="hidden">
                 <h2>Designer Dashboard</h2>
-                <section class="dashboard-section">
-                    <h3>Key Actions</h3>
+                <section class="dashboard-section" aria-labelledby="keyActionsTitleDesigner">
+                    <h3 id="keyActionsTitleDesigner">Key Actions</h3>
                     <button class="btn btn-primary mb-1" data-target="inventoryBrowserScreen">Manage All Inventory</button>
                     <button class="btn btn-primary mb-1" data-target="moveManagementScreen">Oversee All Moves</button>
                     <button class="btn btn-secondary mb-1" data-target="collectionsScreen">Manage Collections</button>
                     <button class="btn btn-secondary" data-target="addItemScreen">Add Item to System</button>
                 </section>
-                 <section class="dashboard-section">
-                    <h3>Pending Approvals / Tasks</h3>
+                 <section class="dashboard-section" aria-labelledby="pendingTasksTitleDesigner">
+                    <h3 id="pendingTasksTitleDesigner">Pending Approvals / Tasks</h3>
                     <div class="card">
                         <p class="text-muted">Placeholder for pending client move approvals, item detail verifications, etc.</p>
                         <div class="activity-feed-item"><strong>Client Smith:</strong> Move request to Hamptons needs scheduling. <button class="btn btn-link btn-sm w-auto">View</button></div>
@@ -600,39 +548,37 @@
 
             <div id="moverDashboardContent" class="hidden">
                 <h2>Mover Dashboard</h2>
-                 <section class="dashboard-section">
-                    <h3>Today's Moves (<span id="todayDate"></span>)</h3>
-                    <div id="moverTodayMoves" class="card">
+                 <section class="dashboard-section" aria-labelledby="todayMovesTitleMover">
+                    <h3 id="todayMovesTitleMover">Today's Moves (<span id="todayDate"></span>)</h3>
+                    <div id="moverTodayMoves" class="card" aria-live="polite">
                         <p class="text-muted">No moves assigned for today.</p>
-                        <!-- Mover-specific move cards here -->
                     </div>
                 </section>
-                 <section class="dashboard-section">
-                    <h3>Quick Tools</h3>
+                 <section class="dashboard-section" aria-labelledby="quickToolsTitleMover">
+                    <h3 id="quickToolsTitleMover">Quick Tools</h3>
                     <button class="btn btn-primary mb-1" id="scanItemQrBtnMover">
-                        <svg class="icon" viewBox="0 0 24 24"><path d="M3 11h8V3H3v8zm2-6h4v4H5V5zM3 21h8v-8H3v8zm2-6h4v4H5v-4zm8-12v8h8V3h-8zm6 6h-4V5h4v4zm0 8h-2v-2h2v-2h-2v-2h2v-2h-2v-2h2V9h-2V7h2V5h-4v бога2h-2v2h-2v2h2v2h-2v2h2v2h2v2h-2v2H9v2h2v2h2v-2h2v-2h2v-2zm0 0h2v2h-2z"/></svg>
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11h8V3H3v8zm2-6h4v4H5V5zM3 21h8v-8H3v8zm2-6h4v4H5v-4zm8-12v8h8V3h-8zm6 6h-4V5h4v4zm0 8h-2v-2h2v-2h-2v-2h2v-2h-2v-2h2V9h-2V7h2V5h-4v2h-2v2h-2v2h2v2h-2v2h2v2h2v2h-2v2H9v2h2v2h2v-2h2v-2h2v-2zm0 0h2v2h-2z"/></svg>
                         Scan Item QR
                     </button>
                     <p class="text-muted text-sm">Simulates scanning an item's QR code for status updates or verification.</p>
                 </section>
             </div>
-
-        </div>
+        </main>
 
         <!-- Inventory Browser Screen -->
-        <div id="inventoryBrowserScreen" class="screen">
+        <main id="inventoryBrowserScreen" class="screen" role="main">
             <h2>My Inventory</h2>
             <div class="inventory-controls">
                 <div class="search-filter-stack">
-                    <input type="text" id="inventorySearchInputGlobal" placeholder="Search items..." aria-label="Search items">
-                    <button class="btn btn-secondary btn-icon filter-toggle-btn" id="filterToggleBtn" aria-label="Toggle Filters">
-                        <svg viewBox="0 0 24 24"><path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/></svg>
+                    <input type="text" id="inventorySearchInputGlobal" placeholder="Search items..." aria-label="Search items by name, ID, category">
+                    <button class="btn btn-secondary btn-icon filter-toggle-btn" id="filterToggleBtn" aria-label="Toggle Filters" aria-expanded="false" aria-controls="filterPanelContainer">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/></svg>
                     </button>
                 </div>
             </div>
 
-            <div class="filter-panel" id="filterPanelContainer">
-                <h4>Filter By:</h4>
+            <div class="filter-panel" id="filterPanelContainer" role="region" aria-labelledby="filterPanelTitle">
+                <h4 id="filterPanelTitle">Filter By:</h4>
                 <div class="filter-columns">
                     <div class="filter-group">
                         <label for="filterProperty">Property</label>
@@ -655,33 +601,33 @@
                         <select id="filterSeasonal"><option value="">All Seasons</option></select>
                     </div>
                 </div>
-                <div class="d-flex gap-1 mt-2">
-                     <button class="btn btn-primary w-auto" id="applyFiltersBtn">Apply</button>
-                     <button class="btn btn-secondary w-auto" id="clearFiltersBtn">Clear</button>
+                <div class="d-flex gap-1 mt-2 flex-wrap">
+                     <button class="btn btn-primary w-auto" id="applyFiltersBtn">Apply Filters</button>
+                     <button class="btn btn-secondary w-auto" id="clearFiltersBtn">Clear Filters</button>
                 </div>
                  <div class="mt-2">
                     <button class="btn btn-link btn-sm w-auto" id="saveFiltersBtn">Save Current Filters</button>
-                    <div id="savedFiltersList" class="mt-1"></div>
+                    <div id="savedFiltersList" class="mt-1" aria-live="polite"></div>
                 </div>
             </div>
 
-            <div class="view-options">
-                <button id="listViewBtn" class="btn btn-secondary active">
-                    <svg class="icon" viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg> List
+            <div class="view-options" role="group" aria-label="Inventory view options">
+                <button id="listViewBtn" class="btn btn-secondary active" aria-pressed="true">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg> List
                 </button>
-                <button id="gridViewBtn" class="btn btn-secondary">
-                    <svg class="icon" viewBox="0 0 24 24"><path d="M3 3h8v8H3V3zm0 10h8v8H3v-8zM13 3h8v8h-8V3zm0 10h8v8h-8v-8z"/></svg> Grid
+                <button id="gridViewBtn" class="btn btn-secondary" aria-pressed="false">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8v8H3V3zm0 10h8v8H3v-8zM13 3h8v8h-8V3zm0 10h8v8h-8v-8z"/></svg> Grid
                 </button>
             </div>
 
-            <div id="inventoryDisplay" class="inventory-list"> <!-- Default to list view -->
+            <div id="inventoryDisplay" class="inventory-list" aria-live="polite">
                 <!-- Items will be injected by JS -->
             </div>
-            <div class="text-center mt-2 sticky-bottom-actions" id="inventoryActionsPanel" style="display:none; padding: 0.5rem; background: var(--primary-color);">
+            <div class="sticky-bottom-actions" id="inventoryActionsPanel" style="display:none;">
                 <p class="mb-1"><span id="selectedItemCount">0</span> item(s) selected</p>
-                <button class="btn btn-primary" id="requestMoveSelectedBtn">Request Move</button>
-                <!-- More bulk actions for Designer role -->
+                <button class="btn btn-primary" id="requestMoveSelectedBtn">Request Move for Selected</button>
                 <div id="designerBulkActions" class="hidden mt-1">
+                     <label for="bulkActionSelect" class="hidden">Bulk Action</label>
                      <select id="bulkActionSelect" class="mb-1">
                         <option value="">Bulk Actions...</option>
                         <option value="addToCollection">Add to Collection</option>
@@ -691,67 +637,71 @@
                     <button class="btn btn-secondary" id="applyBulkActionBtn">Apply Action</button>
                 </div>
             </div>
-        </div>
-
+        </main>
 
         <!-- Item Detail Page -->
-        <div id="itemDetailScreen" class="screen">
+        <main id="itemDetailScreen" class="screen" role="main">
             <button class="btn btn-secondary mb-2 w-auto" data-target="inventoryBrowserScreen">&larr; Back to Inventory</button>
             <h2 id="itemNameDetail">Item Name</h2>
             <div class="item-detail-layout">
-                <div class="item-gallery">
+                <section class="item-gallery" aria-labelledby="itemGalleryTitle">
+                    <h3 id="itemGalleryTitle" class="hidden">Item Images</h3>
                     <img src="https://via.placeholder.com/600x400/2c3a50/f0f0f0?text=Item+Image" alt="Main item image" class="main-image" id="itemDetailMainImage">
-                    <div class="item-thumbnails" id="itemDetailThumbnails"></div>
-                     <div class="qr-code-display mt-2">
+                    <div class="item-thumbnails" id="itemDetailThumbnails" role="listbox" aria-label="Item image thumbnails">
+                        <!-- Thumbnails will be injected by JS, each as role="option" -->
+                    </div>
+                     <div class="qr-code-display mt-2 text-center">
                         <h4 class="text-sm">Item QR Code</h4>
-                        <img src="https://via.placeholder.com/120?text=QR+Code" alt="QR Code" id="itemDetailQrCode">
+                        <img src="https://via.placeholder.com/120?text=QR+Code" alt="QR Code for item" id="itemDetailQrCode">
                     </div>
                     <button class="btn btn-secondary btn-sm w-auto mt-1" id="shareItemViewBtn">Share Item View (Demo)</button>
-                </div>
-                <div class="item-metadata">
-                    <section class="metadata-section">
+                </section>
+                <section class="item-metadata" aria-labelledby="itemMetadataTitle">
+                    <h3 id="itemMetadataTitle" class="hidden">Item Details</h3>
+                    <div class="metadata-section">
                         <h4>Details</h4>
                         <div id="itemDetailMetadata"></div>
-                    </section>
-                    <section class="metadata-section">
+                    </div>
+                    <div class="metadata-section">
                         <h4>Location History</h4>
                         <ul class="location-history-timeline" id="itemDetailLocationHistory"></ul>
-                    </section>
-                     <section class="metadata-section">
+                    </div>
+                     <div class="metadata-section">
                         <h4>Attached Documents</h4>
                         <div id="itemDetailDocs" class="d-flex gap-1 flex-wrap">
-                            <a href="#" class="doc-link btn btn-link btn-sm w-auto"><svg class="icon icon-accent" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg> Receipt.pdf</a>
+                            <a href="#" class="doc-link btn btn-link btn-sm w-auto"><svg class="icon icon-accent" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg> Receipt.pdf</a>
                         </div>
                     </section>
-                </div>
+                </section>
             </div>
             <div class="item-actions mt-2">
                 <button class="btn btn-primary mb-1" id="requestMoveForItemBtn">Request Move for This Item</button>
                 <button class="btn btn-secondary mb-1 designer-only hidden" id="editItemBtn">Edit Item Details</button>
             </div>
-        </div>
+        </main>
 
         <!-- Add/Edit Item Screen -->
-        <div id="addItemScreen" class="screen">
+        <main id="addItemScreen" class="screen" role="main">
              <button class="btn btn-secondary mb-2 w-auto" data-target="inventoryBrowserScreen" id="backFromAddItemBtn">&larr; Cancel</button>
             <h2 id="addItemScreenTitle">Add New Item</h2>
             <form id="addItemForm">
                 <input type="hidden" id="editingItemId">
-                <div class="form-section">
-                    <h3>Basic Information</h3>
+                <section class="form-section" aria-labelledby="addItemBasicInfoTitle">
+                    <h3 id="addItemBasicInfoTitle">Basic Information</h3>
                     <label for="itemName">Item Name*</label>
-                    <input type="text" id="itemName" required placeholder="e.g., Blue Velvet Sofa">
+                    <input type="text" id="itemName" required placeholder="e.g., Blue Velvet Sofa" aria-required="true">
 
                     <label for="itemImageUpload">Item Photo</label>
-                    <input type="file" id="itemImageUpload" accept="image/*">
+                    <input type="file" id="itemImageUpload" accept="image/*" aria-describedby="itemImagePreviewDesc">
                     <img id="itemImagePreview" src="#" alt="Image Preview" class="hidden" />
+                    <small id="itemImagePreviewDesc" class="text-muted text-sm">Optional: Upload an image of the item.</small>
                     <button type="button" class="btn btn-secondary btn-sm w-auto mt-1" id="aiGuessItemBtn">Guess from Image (AI Demo)</button>
-                </div>
+                </section>
 
-                <div class="form-section">
-                    <h3>Categorization & Details</h3>
+                <section class="form-section" aria-labelledby="addItemCategorizationTitle">
+                    <h3 id="addItemCategorizationTitle">Categorization & Details</h3>
                     <label for="itemCategory">Category*</label>
-                    <select id="itemCategory" required></select>
+                    <select id="itemCategory" required aria-required="true"></select>
 
                     <label for="itemSubcategory">Subcategory</label>
                     <input type="text" id="itemSubcategory" placeholder="e.g., Seating, Oil Painting">
@@ -764,10 +714,10 @@
 
                     <label for="itemMaterials">Materials</label>
                     <input type="text" id="itemMaterials" placeholder="e.g., Velvet, Oak, Canvas">
-                </div>
+                </section>
 
-                <div class="form-section">
-                    <h3>Purchase & Value</h3>
+                <section class="form-section" aria-labelledby="addItemPurchaseTitle">
+                    <h3 id="addItemPurchaseTitle">Purchase & Value</h3>
                     <label for="itemValue">Estimated Value ($)</label>
                     <input type="number" id="itemValue" placeholder="e.g., 12000" step="0.01">
 
@@ -779,13 +729,12 @@
 
                     <label for="itemPurchaseLocation">Purchase Location</label>
                     <input type="text" id="itemPurchaseLocation" placeholder="e.g., Christie's Auction, NYC Store">
-                </div>
+                </section>
 
-
-                <div class="form-section">
-                    <h3>Location & Condition</h3>
+                <section class="form-section" aria-labelledby="addItemLocationTitle">
+                    <h3 id="addItemLocationTitle">Location & Condition</h3>
                     <label for="itemLocationProperty">Current Property*</label>
-                    <select id="itemLocationProperty" required></select>
+                    <select id="itemLocationProperty" required aria-required="true"></select>
 
                     <label for="itemLocationRoom">Current Room</label>
                     <input type="text" id="itemLocationRoom" placeholder="e.g., Living Room, Unit A12">
@@ -798,1103 +747,737 @@
 
                     <label for="itemCondition">Condition</label>
                     <select id="itemCondition">
-                        <option value="Excellent">Excellent</option>
-                        <option value="Good">Good</option>
-                        <option value="Fair">Fair</option>
-                        <option value="Poor">Poor</option>
+                        <option value="Excellent">Excellent</option> <option value="Good">Good</option>
+                        <option value="Fair">Fair</option> <option value="Poor">Poor</option>
                         <option value="Needs Repair">Needs Repair</option>
                     </select>
-
                     <label for="itemHandlingInstructions">Handling Instructions</label>
                     <textarea id="itemHandlingInstructions" rows="2" placeholder="e.g., Fragile, Keep Upright"></textarea>
-                </div>
+                </section>
 
-                <div class="form-section">
-                    <h3>Tags & Flags</h3>
+                <section class="form-section" aria-labelledby="addItemTagsTitle">
+                    <h3 id="addItemTagsTitle">Tags & Flags</h3>
                     <label for="itemCollectionTags">Collection Tags (comma-separated)</label>
                     <input type="text" id="itemCollectionTags" placeholder="e.g., Modern Living, Antiques">
 
                     <label for="itemSeasonalTags">Seasonal Tags (comma-separated)</label>
                     <input type="text" id="itemSeasonalTags" placeholder="e.g., Winter, Summer Decor">
 
-                    <div class="d-flex align-center gap-2 mb-1">
+                    <div class="d-flex align-center gap-1 mb-1">
                         <input type="checkbox" id="itemFragile" class="w-auto" style="transform: scale(1.2); margin-right: 0.5rem;">
-                        <label for="itemFragile" class="mb-0 font-bold">Fragile</label>
+                        <label for="itemFragile" class="mb-0 font-bold" style="font-weight:normal;">Fragile</label>
                     </div>
-                     <div class="d-flex align-center gap-2">
+                     <div class="d-flex align-center gap-1">
                         <input type="checkbox" id="itemInsured" class="w-auto" style="transform: scale(1.2); margin-right: 0.5rem;">
-                        <label for="itemInsured" class="mb-0 font-bold">Insured</label>
+                        <label for="itemInsured" class="mb-0 font-bold" style="font-weight:normal;">Insured</label>
                     </div>
-                </div>
-
+                </section>
                 <button type="submit" class="btn btn-primary mt-2">Save Item</button>
             </form>
-        </div>
-
+        </main>
 
         <!-- Move Request Form Screen -->
-        <div id="moveRequestScreen" class="screen">
-            <button class="btn btn-secondary mb-2 w-auto" data-target="inventoryBrowserScreen">&larr; Cancel</button>
+        <main id="moveRequestScreen" class="screen" role="main">
+            <button class="btn btn-secondary mb-2 w-auto" data-target="inventoryBrowserScreen">&larr; Cancel Move Request</button>
             <h2>Request a Move</h2>
             <form id="moveRequestForm">
-                <div class="form-section">
-                    <h3>Items to Move (<span id="moveRequestItemCount">0</span>)</h3>
-                    <div id="moveRequestSelectedItems" class="selected-items-preview">
+                <section class="form-section" aria-labelledby="moveRequestItemsTitle">
+                    <h3 id="moveRequestItemsTitle">Items to Move (<span id="moveRequestItemCount">0</span>)</h3>
+                    <div id="moveRequestSelectedItems" class="selected-items-preview" aria-live="polite">
                         <p class="text-muted">Select items from your inventory.</p>
                     </div>
                      <button type="button" class="btn btn-secondary btn-sm w-auto" data-target="inventoryBrowserScreen">Select/Change Items</button>
-                </div>
+                </section>
 
                 <div class="move-request-form-layout">
-                    <div class="form-section">
-                        <h3>Origin</h3>
+                    <section class="form-section" aria-labelledby="moveRequestOriginTitle">
+                        <h3 id="moveRequestOriginTitle">Origin</h3>
                         <label for="moveOriginProperty">Property*</label>
-                        <select id="moveOriginProperty" required></select>
+                        <select id="moveOriginProperty" required aria-required="true"></select>
                         <label for="moveOriginRoom">Room</label>
                         <input type="text" id="moveOriginRoom" placeholder="E.g., Living Room">
-                    </div>
-                    <div class="form-section">
-                        <h3>Destination</h3>
+                    </section>
+                    <section class="form-section" aria-labelledby="moveRequestDestinationTitle">
+                        <h3 id="moveRequestDestinationTitle">Destination</h3>
                         <label for="moveDestinationProperty">Property*</label>
-                        <select id="moveDestinationProperty" required></select>
+                        <select id="moveDestinationProperty" required aria-required="true"></select>
                         <label for="moveDestinationRoom">Room</label>
                         <input type="text" id="moveDestinationRoom" placeholder="E.g., Main Bedroom">
-                    </div>
+                    </section>
                 </div>
 
-                <div class="form-section">
-                    <h3>Scheduling & Notes</h3>
+                <section class="form-section" aria-labelledby="moveRequestSchedulingTitle">
+                    <h3 id="moveRequestSchedulingTitle">Scheduling & Notes</h3>
                     <label for="moveDesiredDate">Desired Move Date*</label>
-                    <input type="date" id="moveDesiredDate" required>
+                    <input type="date" id="moveDesiredDate" required aria-required="true">
 
                     <label for="moveClientNotes">Notes for Designer/Movers</label>
                     <textarea id="moveClientNotes" rows="3" placeholder="Any special instructions..."></textarea>
-                </div>
-
+                </section>
                 <button type="submit" class="btn btn-primary">Submit Move Request</button>
             </form>
-        </div>
+        </main>
 
         <!-- Move Management Screen -->
-        <div id="moveManagementScreen" class="screen">
+        <main id="moveManagementScreen" class="screen" role="main">
             <h2>Move Management</h2>
-            <div id="moveListContainer">
+            <div id="moveListContainer" aria-live="polite">
                 <!-- Move items will be injected by JS -->
             </div>
-        </div>
+        </main>
 
-         <!-- Move Detail Screen (NEW) -->
-        <div id="moveDetailScreen" class="screen">
+         <!-- Move Detail Screen -->
+        <main id="moveDetailScreen" class="screen" role="main">
             <button class="btn btn-secondary mb-2 w-auto" data-target="moveManagementScreen">&larr; Back to Moves</button>
             <h2 id="moveDetailId">Move Details</h2>
-            <div class="card">
-                <h3>Status & Overview</h3>
+            <section class="card" aria-labelledby="moveDetailStatusTitle">
+                <h3 id="moveDetailStatusTitle">Status & Overview</h3>
                 <p><strong>Current Status:</strong> <span id="moveDetailStatus" class="font-bold"></span></p>
-                <ul class="move-progress-tracker" id="moveDetailProgressTracker">
-                    <!-- Steps: Requested, Scheduled, Crew Assigned, In Transit, Completed -->
+                <ul class="move-progress-tracker" id="moveDetailProgressTracker" aria-label="Move progress steps">
+                    <!-- Steps will be populated here -->
                 </ul>
                  <p><strong>From:</strong> <span id="moveDetailOrigin"></span></p>
                  <p><strong>To:</strong> <span id="moveDetailDestination"></span></p>
                  <p><strong>Scheduled Date:</strong> <span id="moveDetailScheduledDate"></span></p>
-            </div>
-            <div class="card">
-                <h3>Items in this Move (<span id="moveDetailItemCount">0</span>)</h3>
+            </section>
+            <section class="card" aria-labelledby="moveDetailItemsTitle">
+                <h3 id="moveDetailItemsTitle">Items in this Move (<span id="moveDetailItemCount">0</span>)</h3>
                 <div id="moveDetailItemsList" class="inventory-list"></div>
-            </div>
-            <div class="card mover-only hidden">
-                <h3>Mover Actions</h3>
+            </section>
+            <section class="card mover-only hidden" aria-labelledby="moveDetailMoverActionsTitle">
+                <h3 id="moveDetailMoverActionsTitle">Mover Actions</h3>
                 <button class="btn btn-primary mb-1" id="moverScanItemForMoveBtn">Scan Item for Move</button>
                 <button class="btn btn-secondary mb-1" id="moverUpdateMoveStatusBtn">Update Move Status</button>
                 <button class="btn btn-info mb-1" id="moverContactClientBtn">Contact Client (Demo)</button>
-            </div>
-            <div class="card">
-                <h3>Communication Log</h3>
-                <div id="moveCommunicationLog" style="max-height: 200px; overflow-y: auto; border: 1px solid var(--border-color); padding: 0.5rem; border-radius: 4px; margin-bottom:0.5rem;">
+            </section>
+            <section class="card" aria-labelledby="moveDetailCommunicationTitle">
+                <h3 id="moveDetailCommunicationTitle">Communication Log</h3>
+                <div id="moveCommunicationLog" style="max-height: 200px; overflow-y: auto; border: 1px solid var(--border-color); padding: 0.5rem; border-radius: 4px; margin-bottom:0.5rem;" aria-live="polite">
                     <p class="text-muted text-sm">No messages yet.</p>
                 </div>
-                <textarea id="newMoveMessage" rows="2" placeholder="Type a message..." class="mb-1"></textarea>
+                <label for="newMoveMessage" class="hidden">New Message</label>
+                <textarea id="newMoveMessage" rows="2" placeholder="Type a message..." class="mb-1" aria-label="New message for this move"></textarea>
                 <button class="btn btn-secondary btn-sm w-auto" id="sendMoveMessageBtn">Send Message</button>
-            </div>
-        </div>
-
+            </section>
+        </main>
 
         <!-- Property Management Overview Screen -->
-        <div id="propertyManagementScreen" class="screen">
+        <main id="propertyManagementScreen" class="screen" role="main">
             <h2>My Properties</h2>
             <button class="btn btn-primary mb-2 designer-only hidden" id="addNewPropertyBtn">Add New Property (Demo)</button>
             <div id="propertyManagementCardsContainer" class="property-management-cards-desktop">
                 <!-- Property management cards injected by JS -->
             </div>
-        </div>
+        </main>
 
         <!-- Collections Management Screen (Designer) -->
-        <div id="collectionsScreen" class="screen designer-only hidden">
+        <main id="collectionsScreen" class="screen designer-only hidden" role="main">
             <h2>Manage Collections</h2>
-            <div class="card mb-2">
+            <section class="card mb-2" aria-labelledby="newCollectionTitle">
+                <h3 id="newCollectionTitle" class="hidden">Create New Collection</h3>
                 <label for="newCollectionName">New Collection Name</label>
                 <input type="text" id="newCollectionName" placeholder="e.g., Hamptons Summer 2024">
                 <button class="btn btn-primary" id="createCollectionBtn">Create Collection</button>
-            </div>
-            <div id="collectionsListContainer">
+            </section>
+            <div id="collectionsListContainer" aria-live="polite">
                  <p class="text-muted">No collections created yet.</p>
             </div>
-        </div>
-
+        </main>
 
         <!-- Settings Screen -->
-        <div id="settingsScreen" class="screen">
+        <main id="settingsScreen" class="screen" role="main">
             <h2>Settings</h2>
-            <div class="settings-group">
-                <h4>User Profile (Demo)</h4>
+            <section class="settings-group card" aria-labelledby="userProfileTitle">
+                <h4 id="userProfileTitle">User Profile (Demo)</h4>
                 <p><strong>Name:</strong> <span class="userNamePlaceholder">Valued Client</span></p>
                 <p><strong>Email:</strong> <span id="userEmailPlaceholder">client@example.com</span></p>
                 <button class="btn btn-secondary btn-sm w-auto mt-1">Edit Profile (Demo)</button>
-            </div>
-            <div class="settings-group">
-                <h4>Notification Preferences</h4>
+            </section>
+            <section class="settings-group card" aria-labelledby="notificationsTitle">
+                <h4 id="notificationsTitle">Notification Preferences</h4>
                 <div class="notification-preference">
-                    <span>Email for Move Updates</span>
-                    <label class="toggle-switch"><input type="checkbox" checked><span class="slider"></span></label>
+                    <label for="emailMoveUpdatesToggle">Email for Move Updates</label>
+                    <label class="toggle-switch"><input type="checkbox" id="emailMoveUpdatesToggle" checked><span class="slider"></span></label>
                 </div>
                 <div class="notification-preference">
-                    <span>In-App Alerts for New Messages</span>
-                    <label class="toggle-switch"><input type="checkbox" checked><span class="slider"></span></label>
+                     <label for="inAppAlertsToggle">In-App Alerts for New Messages</label>
+                    <label class="toggle-switch"><input type="checkbox" id="inAppAlertsToggle" checked><span class="slider"></span></label>
                 </div>
                  <div class="notification-preference">
-                    <span>Push Notifications (Mobile)</span>
-                    <label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label>
+                    <label for="pushNotificationsToggle">Push Notifications (Mobile)</label>
+                    <label class="toggle-switch"><input type="checkbox" id="pushNotificationsToggle"><span class="slider"></span></label>
                 </div>
-            </div>
-             <div class="settings-group">
-                <h4>Security</h4>
+            </section>
+             <section class="settings-group card" aria-labelledby="securityTitle">
+                <h4 id="securityTitle">Security</h4>
                 <button class="btn btn-secondary btn-sm w-auto">Change Password (Demo)</button>
-            </div>
+            </section>
             <button class="btn btn-danger mt-3" id="logoutButtonSettings">Logout</button>
-        </div>
-
+        </main>
 
     </div> <!-- .app-container -->
 
     <script>
-        // Minimalist SVG Icons (can be expanded or replaced with a library)
-        const ICONS = {
-            // ... (If you had SVG icons defined here, keep them or integrate as needed)
-        };
-
         const App = {
             currentScreen: 'loginScreen',
-            currentUser: { name: "Valued Client", email: "client@example.com", role: "client" }, // Default
+            currentUser: { name: "Valued Client", email: "client@example.com", role: "client" },
             selectedItemsForMove: [],
             currentItemDetailId: null,
             currentMoveDetailId: null,
-            currentViewMode: 'list', // 'list' or 'grid' for inventory
-            
+            editingItemId: null, // Added to track item being edited
+            currentViewMode: 'list',
+            currentTheme: 'theme-default',
+            themes: [
+                { id: 'theme-default', name: 'Sophisticated Dark', class: 'theme-default', preview: {bg: '#1a2639', text: '#f0f0f0', accent: '#c19a6b'} },
+                { id: 'theme-bergdorf', name: 'Elegant Light', class: 'theme-bergdorf', preview: {bg: '#f8f8f4', text: '#333333', accent: '#8B7355'} },
+                { id: 'theme-edgy', name: 'Modern Edgy', class: 'theme-edgy', preview: {bg: '#121212', text: '#e0e0e0', accent: '#00f0c0'} },
+                { id: 'theme-traditional', name: 'Classic Traditional', class: 'theme-traditional', preview: {bg: '#f5f0e1', text: '#3E2723', accent: '#5D4037'} },
+                { id: 'theme-accessible-light', name: 'High Contrast Light', class: 'theme-accessible-light', preview: {bg: '#ffffff', text: '#000000', accent: '#005A9C'} }
+            ],
             data: {
-                // Expanded dummy data
                 properties: [
                     { id: "prop1", name: "Park Avenue Residence", address: "740 Park Ave, New York, NY", type: "Apartment", photo: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=300&q=60", rooms: 10, itemCount: 0, totalValue: 0 },
                     { id: "prop2", name: "Hamptons Beach House", address: "123 Ocean Rd, Southampton, NY", type: "House", photo: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=300&q=60", rooms: 8, itemCount: 0, totalValue: 0 },
                     { id: "prop3", name: "Manhattan Storage Unit", address: "456 Storage Way, New York, NY", type: "Storage", photo: "https://images.unsplash.com/photo-1584720170877-ad356a03d3d1?auto=format&fit=crop&w=300&q=60", rooms: 1, itemCount: 0, totalValue: 0 }
                 ],
                 items: [
-                    // Added new fields: cost, purchaseLocation, expanded collections
                     { id: "ITEM-001", name: "Blue Velvet Sofa", photo: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=150&q=60", photos: ["https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600", "https://images.unsplash.com/photo-1540574163024-58c7f690c232?w=80"], qrCode: "https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=ITEM-001", locationId: "prop1", room: "Living Room", category: "Furniture", subcategory: "Seating", description: "Luxurious blue velvet sofa.", dimensions: "220x100x80cm", weight: "75kg", value: 12000, cost: 9500, purchaseDate: "2022-05-10", purchaseLocation: "Roche Bobois NYC", condition: "Excellent", handling: "Handle with care", seasonalTags: [], collectionTags: ["Modern Living", "Main Residence"], designer: "Roche Bobois", materials: "Velvet, Wood", fragile: false, insured: true, locationHistory: [{date: "2023-01-15", from: "Warehouse", to: "Park Ave, Living Room"}] },
                     { id: "ITEM-002", name: "Antique Chinese Vase", photo: "https://images.unsplash.com/photo-1578990753369-1689d5239f18?auto=format&fit=crop&w=150&q=60", photos: ["https://images.unsplash.com/photo-1578990753369-1689d5239f18?w=600"], qrCode: "https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=ITEM-002", locationId: "prop2", room: "Entrance Hall", category: "Art", subcategory: "Ceramics", description: "Ming Dynasty period vase.", dimensions: "30x30x60cm", weight: "10kg", value: 85000, cost: 60000, purchaseDate: "2020-11-02", purchaseLocation: "Sotheby's Auction", condition: "Good", handling: "Extremely fragile", seasonalTags: [], collectionTags: ["Antiques", "Asian Art", "Hamptons Accent"], designer: "Unknown", materials: "Porcelain", fragile: true, insured: true, locationHistory: [{date: "2023-03-20", from: "Park Ave, Study", to: "Hamptons, Entrance Hall"}] },
                     { id: "ITEM-003", name: "Men's Ski Gear Set", photo: "https://images.unsplash.com/photo-1549609356-85639060069c?auto=format&fit=crop&w=150&q=60", photos: ["https://images.unsplash.com/photo-1549609356-85639060069c?w=600"], qrCode: "https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=ITEM-003", locationId: "prop3", room: "Unit A12", category: "Seasonal Items", subcategory: "Winter Sports", description: "Salomon skis, boots, poles.", dimensions: "180x30x20cm", weight: "15kg", value: 2500, cost: 2200, purchaseDate: "2021-12-01", purchaseLocation: "Paragon Sports NYC", condition: "Very Good", handling: "Standard", seasonalTags: ["Winter"], collectionTags: ["Sports Equipment"], designer: "Salomon", materials: "Composite, Metal", fragile: false, insured: false, locationHistory: [{date: "2023-04-10", from: "Hamptons, Garage", to: "Storage, Unit A12"}] },
                 ],
-                moves: [ // Added move progress history
+                moves: [
                     { id: "MOVE-001", requestDate: "2023-10-01", scheduledDate: "2023-10-15", origin: { propertyId: "prop1", room: "Living Room"}, destination: { propertyId: "prop2", room: "Guest Bedroom"}, itemIds: ["ITEM-001"], status: "Completed", notes: "Sofa well-protected.", history: [{status: "Requested", date: "2023-10-01"}, {status: "Scheduled", date: "2023-10-02"}, {status: "Crew Assigned", date: "2023-10-14"}, {status: "In Transit", date: "2023-10-15"}, {status: "Completed", date: "2023-10-15"}], communication: [{user:"Client", text:"Thanks for the smooth move!", date:"2023-10-16"}] },
                     { id: "MOVE-002", requestDate: "2023-11-05", scheduledDate: "2023-11-20", origin: { propertyId: "prop3", room: "Unit A12"}, destination: { propertyId: "prop1", room: "Storage Closet"}, itemIds: ["ITEM-003"], status: "Scheduled", notes: "", history: [{status: "Requested", date: "2023-11-05"}, {status: "Scheduled", date: "2023-11-06"}], communication: [] },
                 ],
-                collections: [
-                    {id: "col1", name: "Modern Living"}, {id: "col2", name: "Antiques"}, {id: "col3", name: "Hamptons Accent"}
-                ],
+                collections: [ {id: "col1", name: "Modern Living"}, {id: "col2", name: "Antiques"}, {id: "col3", name: "Hamptons Accent"} ],
                 rooms: ["Living Room", "Dining Room", "Master Bedroom", "Study", "Entrance Hall", "Garage", "Storage Closet", "Unit A12", "Guest Bedroom"],
                 categories: ["Furniture", "Art", "Books", "Clothing", "Seasonal Items", "Electronics", "Decor", "Jewelry"],
                 seasonalTagsList: ["Spring", "Summer", "Fall", "Winter", "All-Season"],
-                savedFilters: [
-                    {name: "Fragile Art - Park Ave", filters: {category:"Art", propertyId:"prop1", fragile:true} }
-                ]
+                savedFilters: [ {name: "Fragile Art - Park Ave", filters: {category:"Art", propertyId:"prop1", fragile:true} } ]
             },
 
             init() {
-                // Update item counts for properties
                 App.data.properties.forEach(p => {
                     p.itemCount = App.data.items.filter(i => i.locationId === p.id).length;
                     p.totalValue = App.data.items.filter(i => i.locationId === p.id).reduce((sum, i) => sum + (i.value || 0), 0);
                 });
 
-                // Navigation
                 document.getElementById('menuToggleBtn').addEventListener('click', App.toggleMobileNav);
                 document.getElementById('navOverlay').addEventListener('click', App.closeMobileNav);
-                
-                App.populateNavLinks(); // Populate both mobile and desktop navs
-
+                App.populateNavLinks();
                 document.querySelectorAll('button[data-target], a[data-target]').forEach(el => {
-                    el.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const targetScreen = e.currentTarget.dataset.target;
-                        if (targetScreen) App.navigateTo(targetScreen);
-                    });
+                    el.addEventListener('click', (e) => { e.preventDefault(); const target = e.currentTarget.dataset.target; if(target) App.navigateTo(target); });
                 });
-                
-                // Login/Logout
                 document.getElementById('loginForm').addEventListener('submit', App.handleLogin);
-                document.querySelectorAll('.logoutButton, #logoutButtonSettings').forEach(btn => {
-                    btn.addEventListener('click', App.handleLogout);
-                });
-
-                // Role Switcher
+                document.querySelectorAll('.logoutButton, #logoutButtonSettings').forEach(btn => btn.addEventListener('click', App.handleLogout));
                 document.getElementById('roleSelect').addEventListener('change', App.handleRoleChange);
-
-                // Inventory Screen
                 document.getElementById('gridViewBtn').addEventListener('click', () => App.renderInventoryItems('grid'));
                 document.getElementById('listViewBtn').addEventListener('click', () => App.renderInventoryItems('list'));
-                document.getElementById('filterToggleBtn').addEventListener('click', App.toggleFilterPanel);
+                document.getElementById('filterToggleBtn').addEventListener('click', () => App.toggleFilterPanel());
                 document.getElementById('applyFiltersBtn').addEventListener('click', () => App.renderInventoryItems(App.currentViewMode));
                 document.getElementById('clearFiltersBtn').addEventListener('click', App.clearInventoryFilters);
                 document.getElementById('inventorySearchInputGlobal').addEventListener('input', () => App.renderInventoryItems(App.currentViewMode));
                 document.getElementById('requestMoveSelectedBtn').addEventListener('click', App.initMoveRequestFromSelection);
                 document.getElementById('saveFiltersBtn').addEventListener('click', App.saveCurrentFilters);
                 document.getElementById('applyBulkActionBtn').addEventListener('click', App.applyBulkInventoryAction);
-
-
-                // Add/Edit Item Screen
                 document.getElementById('addItemForm').addEventListener('submit', App.handleSaveItem);
                 document.getElementById('itemImageUpload').addEventListener('change', App.previewItemImage);
                 document.getElementById('aiGuessItemBtn').addEventListener('click', App.simulateAIGuess);
                 document.getElementById('editItemBtn').addEventListener('click', App.editCurrentItemDetail);
-
-
-                // Move Request Form
                 document.getElementById('moveRequestForm').addEventListener('submit', App.handleMoveRequestSubmit);
                 document.getElementById('requestMoveForItemBtn').addEventListener('click', App.initMoveRequestFromItemDetail);
-
-                // Collections Screen (Designer)
                 document.getElementById('createCollectionBtn').addEventListener('click', App.createCollection);
-                
-                // Mover related buttons
-                document.getElementById('scanItemQrBtnMover').addEventListener('click', () => alert("QR Scanner Activated (Demo): Point at QR code... Found item XYZ."));
-                document.getElementById('moverScanItemForMoveBtn').addEventListener('click', () => alert("Scan item for this move (Demo)..."));
-                document.getElementById('moverUpdateMoveStatusBtn').addEventListener('click', () => alert("Update move status options presented (Demo)..."));
-                document.getElementById('moverContactClientBtn').addEventListener('click', () => alert("Initiating call/message to client (Demo)..."));
-
-                // Item Detail Screen
-                document.getElementById('shareItemViewBtn').addEventListener('click', () => alert("Shareable link (read-only) generated: https://homvault.elite/share/ITEM_XYZ (Demo)"));
-
-                // Move Detail Screen
+                document.getElementById('scanItemQrBtnMover').addEventListener('click', () => alert("QR Scanner Activated (Demo)"));
+                document.getElementById('moverScanItemForMoveBtn').addEventListener('click', () => alert("Scan item for move (Demo)"));
+                document.getElementById('moverUpdateMoveStatusBtn').addEventListener('click', () => alert("Update move status (Demo)"));
+                document.getElementById('moverContactClientBtn').addEventListener('click', () => alert("Contact client (Demo)"));
+                document.getElementById('shareItemViewBtn').addEventListener('click', () => alert("Shareable link generated (Demo)"));
                 document.getElementById('sendMoveMessageBtn').addEventListener('click', App.sendMoveMessage);
-
-
-                App.populateStaticDropdowns(); // For filters, item form categories etc.
-                App.handleRoleChange(); // Set initial view based on default role
-                App.navigateTo('loginScreen'); // Start at login
+                document.getElementById('themeSwitcherBtn').addEventListener('click', App.openThemePaletteModal);
+                document.getElementById('closePaletteModalBtn').addEventListener('click', App.closeThemePaletteModal);
+                App.populatePaletteOptions();
+                const savedTheme = localStorage.getItem('homVaultTheme');
+                if (savedTheme && App.themes.find(t => t.class === savedTheme)) { App.applyTheme(savedTheme); }
+                else { App.applyTheme(App.themes[0].class); }
+                
+                App.populateStaticDropdowns();
+                App.handleRoleChange(); // Apply initial role setup
+                App.navigateTo('loginScreen'); // Initial screen
             },
+
+            populatePaletteOptions() {
+                const container = document.getElementById('paletteOptionsContainer');
+                container.innerHTML = '';
+                App.themes.forEach(theme => {
+                    const button = document.createElement('button');
+                    button.classList.add('btn'); 
+                    button.textContent = theme.name;
+                    button.dataset.themeClass = theme.class;
+                    button.style.backgroundColor = theme.preview.bg;
+                    button.style.color = theme.preview.text;
+                    button.style.borderColor = theme.preview.accent;
+                    button.style.borderWidth = '2px'; 
+                    button.style.borderStyle = 'solid';
+                    button.style.marginBottom = '0.5rem';
+
+                    button.addEventListener('click', (e) => {
+                        App.applyTheme(e.currentTarget.dataset.themeClass);
+                        App.closeThemePaletteModal();
+                    });
+                    container.appendChild(button);
+                });
+            },
+
+            applyTheme(themeClass) {
+                App.themes.forEach(theme => document.body.classList.remove(theme.class));
+                document.body.classList.add(themeClass);
+                App.currentTheme = themeClass;
+                localStorage.setItem('homVaultTheme', themeClass);
+
+                const currentThemeObject = App.themes.find(t => t.class === themeClass);
+                let primaryColorRgbForGradient = '26, 38, 57'; // Default
+                if (currentThemeObject && currentThemeObject.preview && currentThemeObject.preview.bg) {
+                    let primaryColorHex = currentThemeObject.preview.bg;
+                     if (primaryColorHex.startsWith('#')) {
+                        const hexToRgb = hex => {
+                            const bigint = parseInt(hex.slice(1), 16);
+                            const r = (bigint >> 16) & 255; const g = (bigint >> 8) & 255; const b = bigint & 255;
+                            return `${r}, ${g}, ${b}`;
+                        };
+                        primaryColorRgbForGradient = hexToRgb(primaryColorHex);
+                    }
+                }
+                document.documentElement.style.setProperty('--primary-color-rgb', primaryColorRgbForGradient);
+
+                // Update select arrow color based on current theme's text or accent color
+                const selects = document.querySelectorAll('select');
+                selects.forEach(select => {
+                    select.style.backgroundImage = 'none'; // Force redraw
+                    let arrowColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim();
+                    // Check if accent color is too light for the default arrow or if on a light theme
+                    // This is a heuristic; proper contrast checking is more complex
+                    const isLightTheme = ['theme-bergdorf', 'theme-traditional', 'theme-accessible-light'].includes(App.currentTheme);
+                    if (isLightTheme) {
+                        arrowColor = getComputedStyle(document.documentElement).getPropertyValue('--text-muted-light').trim() || '#666666';
+                    } else if (App.currentTheme === 'theme-edgy') { // Edgy has a very light accent
+                         arrowColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim();
+                    }
+                    // Default arrow color for dark themes can remain accent if it's not too dark itself
+                    // else it might need to be var(--text-light)
+
+                    select.style.backgroundImage = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='${encodeURIComponent(arrowColor)}'%3E%3Cpath fill-rule='evenodd' d='M4.22 6.03a.75.75 0 00-1.06 1.06l3.5 3.5a.75.75 0 001.06 0l3.5-3.5a.75.75 0 00-1.06-1.06L8 8.94 4.22 6.03z' clip-rule='evenodd'/%3E%3C/svg%3E")`;
+                });
+                // Update pulse animation color
+                const pulseKeyframes = document.styleSheets[0].cssRules; // Find the @keyframes rule
+                for (let i = 0; i < pulseKeyframes.length; i++) {
+                    if (pulseKeyframes[i].name === 'pulse') {
+                        let accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim();
+                        let r=193, g=154, b=107; // Default
+                        if (accentColor.startsWith('#')) {
+                            const bigint = parseInt(accentColor.slice(1), 16);
+                            r = (bigint >> 16) & 255; g = (bigint >> 8) & 255; b = bigint & 255;
+                        }
+                        pulseKeyframes[i].cssRules[0].style.boxShadow = `0 0 0 0 rgba(${r}, ${g}, ${b}, 0.7)`; // 0%
+                        pulseKeyframes[i].cssRules[1].style.boxShadow = `0 0 0 5px rgba(${r}, ${g}, ${b}, 0)`;   // 50%
+                        break;
+                    }
+                }
+            },
+            openThemePaletteModal() { const modal = document.getElementById('themePaletteModal'); modal.classList.remove('hidden'); modal.style.display = 'flex'; },
+            closeThemePaletteModal() { document.getElementById('themePaletteModal').style.display = 'none'; document.getElementById('themePaletteModal').classList.add('hidden'); },
 
             populateNavLinks() {
                 const navItems = [
                     { label: "Dashboard", target: "dashboardScreen", roles: ["client", "designer", "mover"] },
                     { label: "Inventory", target: "inventoryBrowserScreen", roles: ["client", "designer"] },
-                    { label: "Add Item", target: "addItemScreen", roles: ["client", "designer"] }, // Client can add too
+                    { label: "Add Item", target: "addItemScreen", roles: ["client", "designer"] },
                     { label: "Moves", target: "moveManagementScreen", roles: ["client", "designer", "mover"] },
                     { label: "Properties", target: "propertyManagementScreen", roles: ["client", "designer"] },
-                    { label: "Collections", target: "collectionsScreen", roles: ["designer"], designerOnly: true },
+                    { label: "Collections", target: "collectionsScreen", roles: ["designer"] },
                     { label: "Settings", target: "settingsScreen", roles: ["client", "designer", "mover"] },
                 ];
 
                 const mobileNavContainer = document.getElementById('mobileNav');
                 const desktopNavContainer = document.getElementById('desktopNav');
                 
-                // Clear existing (if any, for re-population on role change if needed, though static for now)
-                // Keep logo in mobile nav
                 const mobileLogo = mobileNavContainer.querySelector('.logo-small');
                 mobileNavContainer.innerHTML = ''; 
                 if(mobileLogo) mobileNavContainer.prepend(mobileLogo);
-
                 desktopNavContainer.innerHTML = '';
 
                 navItems.forEach(item => {
-                    if (item.roles.includes(App.currentUser.role)) {
-                        // Mobile Nav
+                    // Only add if role matches OR if item is not role-specific (all roles)
+                    if (item.roles.includes(App.currentUser.role) ) {
                         const mobileLink = document.createElement('a');
-                        mobileLink.href = "#";
-                        mobileLink.dataset.target = item.target;
-                        mobileLink.textContent = item.label;
-                        mobileLink.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            App.navigateTo(item.target);
-                            App.closeMobileNav();
-                        });
+                        mobileLink.href = "#"; mobileLink.dataset.target = item.target; mobileLink.textContent = item.label;
+                        mobileLink.addEventListener('click', (e) => { e.preventDefault(); App.navigateTo(item.target); App.closeMobileNav(); });
                         mobileNavContainer.appendChild(mobileLink);
 
-                        // Desktop Nav
                         const desktopLink = document.createElement('a');
-                        desktopLink.href = "#";
-                        desktopLink.dataset.target = item.target;
-                        desktopLink.textContent = item.label;
-                        desktopLink.addEventListener('click', (e) => {
-                             e.preventDefault();
-                             App.navigateTo(item.target);
-                        });
+                        desktopLink.href = "#"; desktopLink.dataset.target = item.target; desktopLink.textContent = item.label;
+                        desktopLink.addEventListener('click', (e) => {  e.preventDefault(); App.navigateTo(item.target); });
                         desktopNavContainer.appendChild(desktopLink);
                     }
                 });
-                 // Add logout to mobile nav
                 const mobileLogout = document.createElement('a');
                 mobileLogout.href = "#"; mobileLogout.textContent = "Logout";
                 mobileLogout.addEventListener('click', App.handleLogout);
                 mobileNavContainer.appendChild(mobileLogout);
 
-                // Add logout to desktop nav
                 const desktopLogout = document.createElement('a');
                 desktopLogout.href = "#"; desktopLogout.textContent = "Logout";
                 desktopLogout.addEventListener('click', App.handleLogout);
                 desktopNavContainer.appendChild(desktopLogout);
             },
-            
             updateActiveNavLinks(screenId) {
                 document.querySelectorAll('#mobileNav a, #desktopNav a').forEach(link => {
                     link.classList.remove('active');
-                    if (link.dataset.target === screenId) {
-                        link.classList.add('active');
-                    }
+                    if (link.dataset.target === screenId) link.classList.add('active');
                 });
             },
-
-            toggleMobileNav() {
-                document.getElementById('mobileNav').classList.toggle('open');
-                document.getElementById('navOverlay').classList.toggle('open');
-            },
-            closeMobileNav() {
-                document.getElementById('mobileNav').classList.remove('open');
-                document.getElementById('navOverlay').classList.remove('open');
-            },
-
+            toggleMobileNav() { document.getElementById('mobileNav').classList.toggle('open'); document.getElementById('navOverlay').classList.toggle('open'); },
+            closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); document.getElementById('navOverlay').classList.remove('open'); },
             navigateTo(screenId) {
+                // Clear editing state if navigating away from addItemScreen unless we are saving (handled in saveItem)
+                if (App.editingItemId && App.currentScreen === 'addItemScreen' && screenId !== 'addItemScreen' && screenId !== 'itemDetailScreen') {
+                    App.editingItemId = null;
+                }
+
                 document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
                 const target = document.getElementById(screenId);
                 if (target) {
-                    target.classList.add('active');
-                    App.currentScreen = screenId;
-                    window.scrollTo(0,0);
-                    App.updateActiveNavLinks(screenId);
-
-                    // Specific actions for screens
+                    target.classList.add('active'); App.currentScreen = screenId; window.scrollTo(0,0); App.updateActiveNavLinks(screenId);
                     if (screenId === 'dashboardScreen') App.renderDashboard();
                     if (screenId === 'inventoryBrowserScreen') { App.renderInventoryItems(App.currentViewMode); App.populateFilterDropdowns(); App.renderSavedFilters(); }
                     if (screenId === 'moveManagementScreen') App.renderMoveManagementList();
                     if (screenId === 'propertyManagementScreen') App.renderPropertyManagement();
-                    if (screenId === 'addItemScreen') App.resetAddItemForm(); // Reset form unless editing
+                    // Only reset addItemForm if not coming from an edit button or if navigating to it directly
+                    if (screenId === 'addItemScreen' && !App.editingItemId) App.resetAddItemForm(); 
                     if (screenId === 'collectionsScreen') App.renderCollectionsList();
                     if (screenId === 'settingsScreen') App.renderSettingsScreen();
-                    if (screenId === 'moveRequestScreen' && App.selectedItemsForMove.length > 0) {
-                         App.populateMoveRequestFormWithSelectedItems();
-                    } else if (screenId === 'moveRequestScreen') {
-                         App.clearMoveRequestFormItems();
-                    }
-                } else {
-                    console.error("Screen not found:", screenId);
-                }
+                    if (screenId === 'moveRequestScreen' && App.selectedItemsForMove.length > 0) App.populateMoveRequestFormWithSelectedItems();
+                    else if (screenId === 'moveRequestScreen') App.clearMoveRequestFormItems();
+                } else { console.error("Screen not found:", screenId); }
             },
-
             handleLogin(e) {
-                e.preventDefault();
-                const email = document.getElementById('email').value;
-                // Simulate login - in real app, verify then set user object
+                e.preventDefault(); const email = document.getElementById('email').value;
                 const role = email.includes('designer') ? 'designer' : (email.includes('mover') ? 'mover' : 'client');
-                App.currentUser = {
-                    name: email.split('@')[0].replace(/\./g, ' ').replace(/\b\w/g, l => l.toUpperCase()), // Format name from email
-                    email: email,
-                    role: role
-                };
+                App.currentUser = { name: email.split('@')[0].replace(/\./g, ' ').replace(/\b\w/g, l => l.toUpperCase()), email: email, role: role };
                 document.getElementById('userName').textContent = App.currentUser.name;
                 document.querySelectorAll('.userNamePlaceholder').forEach(el => el.textContent = App.currentUser.name);
                 document.getElementById('userEmailPlaceholder').textContent = App.currentUser.email;
-                
-                App.handleRoleChange(null, role); // Update UI based on role
-                App.navigateTo('dashboardScreen');
+                App.handleRoleChange(null, role); App.navigateTo('dashboardScreen');
             },
-            handleLogout(e) {
-                e.preventDefault();
-                App.selectedItemsForMove = [];
-                App.currentUser = { name: "Valued Client", email: "client@example.com", role: "client" }; // Reset user
-                App.closeMobileNav(); // Ensure nav is closed
-                App.navigateTo('loginScreen');
-            },
-
+            handleLogout(e) { e.preventDefault(); App.selectedItemsForMove = []; App.currentUser = { name: "Valued Client", email: "client@example.com", role: "client" }; App.editingItemId = null; App.closeMobileNav(); App.navigateTo('loginScreen'); },
             handleRoleChange(event, newRole) {
                 const role = newRole || (event ? event.target.value : App.currentUser.role);
-                App.currentUser.role = role;
-                document.getElementById('roleSelect').value = role; // Sync dropdown if changed programmatically
-
-                // Show/hide role-specific dashboard content
+                App.currentUser.role = role; document.getElementById('roleSelect').value = role;
                 document.getElementById('clientDashboardContent').classList.toggle('hidden', role !== 'client');
                 document.getElementById('designerDashboardContent').classList.toggle('hidden', role !== 'designer');
                 document.getElementById('moverDashboardContent').classList.toggle('hidden', role !== 'mover');
-
-                // Show/hide role-specific elements globally (e.g., buttons)
                 document.querySelectorAll('.designer-only').forEach(el => el.classList.toggle('hidden', role !== 'designer'));
                 document.querySelectorAll('.mover-only').forEach(el => el.classList.toggle('hidden', role !== 'mover'));
                 document.querySelectorAll('.client-only').forEach(el => el.classList.toggle('hidden', role !== 'client'));
-                
-                App.populateNavLinks(); // Repopulate navs based on new role
-                App.updateActiveNavLinks(App.currentScreen); // Re-highlight current screen in new nav
-
-                // If on dashboard, re-render it for the new role
+                App.populateNavLinks(); App.updateActiveNavLinks(App.currentScreen);
                 if (App.currentScreen === 'dashboardScreen') App.renderDashboard();
-                if (App.currentScreen === 'inventoryBrowserScreen') App.renderInventoryItems(App.currentViewMode); // Update bulk actions
+                if (App.currentScreen === 'inventoryBrowserScreen') App.renderInventoryItems(App.currentViewMode);
             },
-
-
             renderDashboard() {
                 const role = App.currentUser.role;
-                if (role === 'client' || role === 'designer') { // Shared elements for client/designer
-                    const propertyCardsContainer = document.getElementById('dashboardPropertyCards');
-                    propertyCardsContainer.innerHTML = '';
+                if (role === 'client' || role === 'designer') {
+                    const propertyCardsContainer = document.getElementById('dashboardPropertyCards'); propertyCardsContainer.innerHTML = '';
                     App.data.properties.slice(0,3).forEach(prop => {
-                        const card = document.createElement('div');
-                        card.className = 'dashboard-property-card card'; // Use card for styling
-                        card.innerHTML = `
-                            <img src="${prop.photo}" alt="${prop.name}">
-                            <div class="dashboard-property-card-info">
-                                <h4>${prop.name}</h4>
-                                <p>${prop.type} - ${prop.itemCount} items</p>
-                                <p class="text-sm"><a href="#" data-target="inventoryBrowserScreen" data-filter-property="${prop.id}">View Items</a></p>
-                            </div>
-                        `;
-                        card.querySelector('a[data-target]').addEventListener('click', (e) => { /* ... as before ... */ });
+                        const card = document.createElement('div'); card.className = 'dashboard-property-card card';
+                        card.innerHTML = `<img src="${prop.photo}" alt="${prop.name}"><div class="dashboard-property-card-info"><h4>${prop.name}</h4><p>${prop.type} - ${prop.itemCount} items</p><p class="text-sm"><a href="#" data-target="inventoryBrowserScreen" data-filter-property="${prop.id}">View Items</a></p></div>`;
+                        card.querySelector('a[data-target]').addEventListener('click', (e) => { e.preventDefault(); const propId = e.currentTarget.dataset.filterProperty; App.navigateTo('inventoryBrowserScreen'); setTimeout(() => { document.getElementById('filterProperty').value = propId; App.renderInventoryItems();},0); });
                         propertyCardsContainer.appendChild(card);
                     });
-
-                    const activityFeed = document.getElementById('recentActivityFeed');
-                    activityFeed.innerHTML = '<li class="activity-feed-item"><strong>ITEM-001:</strong> Moved to Park Ave.</li><li class="activity-feed-item"><strong>MOVE-002:</strong> Scheduled for Nov 20.</li>';
-                    
-                    const upcomingMovesList = document.getElementById('upcomingMovesList');
-                    upcomingMovesList.innerHTML = '<li class="upcoming-move-item"><strong>Nov 20:</strong> Skis to Park Ave.</li><li class="upcoming-move-item"><strong>Dec 05:</strong> Art to Hamptons (Requested).</li>';
+                    const activityFeed = document.getElementById('recentActivityFeed'); activityFeed.innerHTML = '<li class="activity-feed-item"><strong>ITEM-001:</strong> Moved to Park Ave.</li><li class="activity-feed-item"><strong>MOVE-002:</strong> Scheduled for Nov 20.</li>';
+                    const upcomingMovesList = document.getElementById('upcomingMovesList'); upcomingMovesList.innerHTML = '<li class="upcoming-move-item"><strong>Nov 20:</strong> Skis to Park Ave.</li><li class="upcoming-move-item"><strong>Dec 05:</strong> Art to Hamptons (Requested).</li>';
                 }
                 if (role === 'mover') {
                     document.getElementById('todayDate').textContent = new Date().toLocaleDateString();
                     const moverMovesContainer = document.getElementById('moverTodayMoves');
-                    moverMovesContainer.innerHTML = `
-                        <div class="card move-list-item move-status-inprogress"> <!-- Example mover move card -->
-                            <div class="move-header">
-                                <span class="move-id">MOVE-00X</span>
-                                <span class="move-status">In Progress</span>
-                            </div>
-                            <p class="text-sm"><strong>Client:</strong> Smith | <strong>To:</strong> Park Ave Residence</p>
-                            <button class="btn btn-primary btn-sm w-auto mt-1" data-move-id="MOVE-00X" onclick="App.navigateToMoveDetail(this.dataset.moveId)">View Details</button>
-                        </div>
-                    `;
+                    moverMovesContainer.innerHTML = `<div class="card move-list-item move-status-inprogress"><div class="move-header"><span class="move-id">MOVE-00X</span><span class="move-status">In Progress</span></div><p class="text-sm"><strong>Client:</strong> Smith | <strong>To:</strong> Park Ave Residence</p><button class="btn btn-primary btn-sm w-auto mt-1" data-move-id="MOVE-00X" onclick="App.navigateToMoveDetail(this.dataset.moveId)">View Details</button></div>`;
                 }
             },
-            
             populateStaticDropdowns() {
                 const createOption = (value, text) => { const o = document.createElement('option'); o.value = value; o.textContent = text; return o; };
-
-                // Item Form Categories
-                const itemCatSelect = document.getElementById('itemCategory');
-                itemCatSelect.innerHTML = ''; itemCatSelect.appendChild(createOption("", "Select Category*"));
-                App.data.categories.forEach(c => itemCatSelect.appendChild(createOption(c,c)));
-
-                // Item Form Properties
-                const itemPropSelect = document.getElementById('itemLocationProperty');
-                itemPropSelect.innerHTML = ''; itemPropSelect.appendChild(createOption("", "Select Property*"));
-                App.data.properties.forEach(p => itemPropSelect.appendChild(createOption(p.id, p.name)));
-                
-                // Move Form Properties
-                const moveOriginProp = document.getElementById('moveOriginProperty');
-                const moveDestProp = document.getElementById('moveDestinationProperty');
-                moveOriginProp.innerHTML = ''; moveOriginProp.appendChild(createOption("", "Select Origin*"));
-                moveDestProp.innerHTML = ''; moveDestProp.appendChild(createOption("", "Select Destination*"));
-                App.data.properties.forEach(p => {
-                    moveOriginProp.appendChild(createOption(p.id, p.name));
-                    moveDestProp.appendChild(createOption(p.id, p.name));
-                });
+                const itemCatSelect = document.getElementById('itemCategory'); itemCatSelect.innerHTML = ''; itemCatSelect.appendChild(createOption("", "Select Category*")); App.data.categories.forEach(c => itemCatSelect.appendChild(createOption(c,c)));
+                const itemPropSelect = document.getElementById('itemLocationProperty'); itemPropSelect.innerHTML = ''; itemPropSelect.appendChild(createOption("", "Select Property*")); App.data.properties.forEach(p => itemPropSelect.appendChild(createOption(p.id, p.name)));
+                const moveOriginProp = document.getElementById('moveOriginProperty'); const moveDestProp = document.getElementById('moveDestinationProperty');
+                moveOriginProp.innerHTML = ''; moveOriginProp.appendChild(createOption("", "Select Origin*")); moveDestProp.innerHTML = ''; moveDestProp.appendChild(createOption("", "Select Destination*"));
+                App.data.properties.forEach(p => { moveOriginProp.appendChild(createOption(p.id, p.name)); moveDestProp.appendChild(createOption(p.id, p.name)); });
             },
-
-            populateFilterDropdowns() { /* Similar to original, but add Collections */
-                const propSelect = document.getElementById('filterProperty');
-                propSelect.innerHTML = '<option value="">All Properties</option>';
-                App.data.properties.forEach(p => propSelect.add(new Option(p.name, p.id)));
-
-                const roomSelect = document.getElementById('filterRoom');
-                roomSelect.innerHTML = '<option value="">All Rooms</option>';
-                App.data.rooms.forEach(r => roomSelect.add(new Option(r, r)));
-
-                const catSelect = document.getElementById('filterCategory');
-                catSelect.innerHTML = '<option value="">All Categories</option>';
-                App.data.categories.forEach(c => catSelect.add(new Option(c, c)));
-
-                const colSelect = document.getElementById('filterCollection');
-                colSelect.innerHTML = '<option value="">All Collections</option>';
-                App.data.collections.forEach(col => colSelect.add(new Option(col.name, col.id)));
-
-                const seasonSelect = document.getElementById('filterSeasonal');
-                seasonSelect.innerHTML = '<option value="">All Seasons</option>';
-                App.data.seasonalTagsList.forEach(s => seasonSelect.add(new Option(s,s)));
+            populateFilterDropdowns() {
+                const propSelect = document.getElementById('filterProperty'); propSelect.innerHTML = '<option value="">All Properties</option>'; App.data.properties.forEach(p => propSelect.add(new Option(p.name, p.id)));
+                const roomSelect = document.getElementById('filterRoom'); roomSelect.innerHTML = '<option value="">All Rooms</option>'; App.data.rooms.forEach(r => roomSelect.add(new Option(r, r)));
+                const catSelect = document.getElementById('filterCategory'); catSelect.innerHTML = '<option value="">All Categories</option>'; App.data.categories.forEach(c => catSelect.add(new Option(c, c)));
+                const colSelect = document.getElementById('filterCollection'); colSelect.innerHTML = '<option value="">All Collections</option>'; App.data.collections.forEach(col => colSelect.add(new Option(col.name, col.id)));
+                const seasonSelect = document.getElementById('filterSeasonal'); seasonSelect.innerHTML = '<option value="">All Seasons</option>'; App.data.seasonalTagsList.forEach(s => seasonSelect.add(new Option(s,s)));
             },
-            
             renderSavedFilters() {
-                const container = document.getElementById('savedFiltersList');
-                container.innerHTML = '';
-                if (App.data.savedFilters.length === 0) {
-                    container.innerHTML = '<p class="text-muted text-sm">No saved filters.</p>';
-                    return;
-                }
+                const container = document.getElementById('savedFiltersList'); container.innerHTML = '';
+                if (App.data.savedFilters.length === 0) { container.innerHTML = '<p class="text-muted text-sm">No saved filters.</p>'; return; }
                 App.data.savedFilters.forEach((sf, index) => {
-                    const div = document.createElement('div');
-                    div.className = 'd-flex justify-between align-center text-sm mb-1';
-                    div.innerHTML = `
-                        <span>${sf.name}</span>
-                        <div>
-                            <button class="btn btn-link btn-sm w-auto" data-index="${index}">Load</button>
-                            <button class="btn btn-danger btn-sm w-auto" data-index="${index}" style="padding:2px 5px; font-size:0.7rem;">X</button>
-                        </div>
-                    `;
-                    div.querySelector('button.btn-link').addEventListener('click', App.loadSavedFilter);
-                    div.querySelector('button.btn-danger').addEventListener('click', App.deleteSavedFilter);
+                    const div = document.createElement('div'); div.className = 'd-flex justify-between align-center text-sm mb-1';
+                    div.innerHTML = `<span>${sf.name}</span><div><button class="btn btn-link btn-sm w-auto" data-index="${index}">Load</button><button class="btn btn-danger btn-sm w-auto" data-index="${index}" style="padding:2px 5px; font-size:0.7rem;">X</button></div>`;
+                    div.querySelector('button.btn-link').addEventListener('click', App.loadSavedFilter); div.querySelector('button.btn-danger').addEventListener('click', App.deleteSavedFilter);
                     container.appendChild(div);
                 });
             },
             saveCurrentFilters() {
-                const name = prompt("Enter a name for this filter set:");
-                if (!name) return;
-                const currentFilters = {
-                    propertyId: document.getElementById('filterProperty').value,
-                    room: document.getElementById('filterRoom').value,
-                    category: document.getElementById('filterCategory').value,
-                    collectionId: document.getElementById('filterCollection').value,
-                    seasonalTag: document.getElementById('filterSeasonal').value,
-                    searchTerm: document.getElementById('inventorySearchInputGlobal').value
-                };
-                App.data.savedFilters.push({ name: name, filters: currentFilters });
-                App.renderSavedFilters();
-                alert(`Filter set "${name}" saved.`);
+                const name = prompt("Enter a name for this filter set:"); if (!name) return;
+                const currentFilters = { propertyId: document.getElementById('filterProperty').value, room: document.getElementById('filterRoom').value, category: document.getElementById('filterCategory').value, collectionId: document.getElementById('filterCollection').value, seasonalTag: document.getElementById('filterSeasonal').value, searchTerm: document.getElementById('inventorySearchInputGlobal').value };
+                App.data.savedFilters.push({ name: name, filters: currentFilters }); App.renderSavedFilters(); alert(`Filter set "${name}" saved.`);
             },
             loadSavedFilter(event) {
-                const index = event.currentTarget.dataset.index;
-                const savedFilter = App.data.savedFilters[index];
+                const index = event.currentTarget.dataset.index; const savedFilter = App.data.savedFilters[index];
                 if (savedFilter) {
-                    document.getElementById('filterProperty').value = savedFilter.filters.propertyId || "";
-                    document.getElementById('filterRoom').value = savedFilter.filters.room || "";
-                    document.getElementById('filterCategory').value = savedFilter.filters.category || "";
-                    document.getElementById('filterCollection').value = savedFilter.filters.collectionId || "";
-                    document.getElementById('filterSeasonal').value = savedFilter.filters.seasonalTag || "";
-                    document.getElementById('inventorySearchInputGlobal').value = savedFilter.filters.searchTerm || "";
-                    App.renderInventoryItems(App.currentViewMode);
-                    App.toggleFilterPanel(false); // Close panel after loading
+                    document.getElementById('filterProperty').value = savedFilter.filters.propertyId || ""; document.getElementById('filterRoom').value = savedFilter.filters.room || "";
+                    document.getElementById('filterCategory').value = savedFilter.filters.category || ""; document.getElementById('filterCollection').value = savedFilter.filters.collectionId || "";
+                    document.getElementById('filterSeasonal').value = savedFilter.filters.seasonalTag || ""; document.getElementById('inventorySearchInputGlobal').value = savedFilter.filters.searchTerm || "";
+                    App.renderInventoryItems(App.currentViewMode); App.toggleFilterPanel(false);
                 }
             },
-            deleteSavedFilter(event) {
-                 if (!confirm("Are you sure you want to delete this saved filter?")) return;
-                 const index = event.currentTarget.dataset.index;
-                 App.data.savedFilters.splice(index, 1);
-                 App.renderSavedFilters();
-            },
-
-
-            toggleFilterPanel(forceState) { /* forceState can be true (open) or false (close) */
-                const panel = document.getElementById('filterPanelContainer');
-                const btn = document.getElementById('filterToggleBtn');
+            deleteSavedFilter(event) { if (!confirm("Delete saved filter?")) return; const index = event.currentTarget.dataset.index; App.data.savedFilters.splice(index, 1); App.renderSavedFilters(); },
+            clearInventoryFilters() { ['filterProperty', 'filterRoom', 'filterCategory', 'filterCollection', 'filterSeasonal'].forEach(id => document.getElementById(id).value = ""); document.getElementById('inventorySearchInputGlobal').value = ""; App.renderInventoryItems(App.currentViewMode);},
+            toggleFilterPanel(forceState) {
+                const panel = document.getElementById('filterPanelContainer'); const btn = document.getElementById('filterToggleBtn');
                 const isOpen = panel.style.display === 'block';
-                if (typeof forceState === 'boolean') {
-                    panel.style.display = forceState ? 'block' : 'none';
-                } else {
-                    panel.style.display = isOpen ? 'none' : 'block';
-                }
-                btn.classList.toggle('active', panel.style.display === 'block');
+                if (typeof forceState === 'boolean') { panel.style.display = forceState ? 'block' : 'none'; }
+                else { panel.style.display = isOpen ? 'none' : 'block'; }
+                btn.classList.toggle('active', panel.style.display === 'block'); btn.setAttribute('aria-expanded', panel.style.display === 'block');
             },
-
             renderInventoryItems(viewType = 'list') {
-                App.currentViewMode = viewType;
-                const displayContainer = document.getElementById('inventoryDisplay');
-                const gridBtn = document.getElementById('gridViewBtn');
-                const listBtn = document.getElementById('listViewBtn');
-
-                displayContainer.className = `inventory-${viewType}`; // 'inventory-list' or 'inventory-grid'
-                gridBtn.classList.toggle('active', viewType === 'grid');
-                listBtn.classList.toggle('active', viewType === 'list');
-                
-                displayContainer.innerHTML = ''; 
-
-                // Filter logic (simplified for brevity, can be expanded)
+                App.currentViewMode = viewType; const displayContainer = document.getElementById('inventoryDisplay');
+                const gridBtn = document.getElementById('gridViewBtn'); const listBtn = document.getElementById('listViewBtn');
+                displayContainer.className = `inventory-${viewType}`; gridBtn.classList.toggle('active', viewType === 'grid'); listBtn.classList.toggle('active', viewType === 'list');
+                gridBtn.setAttribute('aria-pressed', viewType === 'grid'); listBtn.setAttribute('aria-pressed', viewType === 'list');
+                displayContainer.innerHTML = '';
                 const searchTerm = document.getElementById('inventorySearchInputGlobal').value.toLowerCase();
-                const filterProp = document.getElementById('filterProperty').value;
-                // ... get other filter values ...
-                const filterCol = document.getElementById('filterCollection').value;
-
+                const filterProp = document.getElementById('filterProperty').value; const filterCol = document.getElementById('filterCollection').value;
+                const filterRoomVal = document.getElementById('filterRoom').value; const filterCatVal = document.getElementById('filterCategory').value; const filterSeasonVal = document.getElementById('filterSeasonal').value;
 
                 let filteredItems = App.data.items.filter(item => {
-                    const nameMatch = item.name.toLowerCase().includes(searchTerm);
+                    const searchMatch = (item.name.toLowerCase().includes(searchTerm) || item.id.toLowerCase().includes(searchTerm) || item.category.toLowerCase().includes(searchTerm) || (item.description && item.description.toLowerCase().includes(searchTerm)) || (item.designer && item.designer.toLowerCase().includes(searchTerm)));
                     const propMatch = filterProp === '' || item.locationId === filterProp;
-                    const colMatch = filterCol === '' || (item.collectionTags && item.collectionTags.some(tagId => App.data.collections.find(c => c.id === filterCol)?.name === tagId)); // Match by name if collection is string tag
-                    // ... other filter matches ...
-                    return (searchTerm === '' || nameMatch) && propMatch && colMatch;
+                    const roomMatch = filterRoomVal === '' || item.room === filterRoomVal;
+                    const catMatch = filterCatVal === '' || item.category === filterCatVal;
+                    const seasonMatch = filterSeasonVal === '' || (item.seasonalTags && item.seasonalTags.includes(filterSeasonVal));
+                    const colMatch = filterCol === '' || (item.collectionTags && item.collectionTags.some(tag => {
+                        const collection = App.data.collections.find(c => c.id === filterCol);
+                        return collection && (collection.name === tag || collection.id === tag); // Check if tag matches name or id of selected collection
+                    }));
+                    return (searchTerm === '' || searchMatch) && propMatch && roomMatch && catMatch && seasonMatch && colMatch;
                 });
-
-                if (filteredItems.length === 0) {
-                    displayContainer.innerHTML = '<p class="text-muted text-center" style="grid-column: 1 / -1;">No items match your criteria.</p>';
-                }
-
+                if (filteredItems.length === 0) { displayContainer.innerHTML = '<p class="text-muted text-center" style="grid-column: 1 / -1;">No items match your criteria.</p>'; }
                 filteredItems.forEach(item => {
-                    const itemElement = document.createElement('div');
-                    itemElement.className = viewType === 'grid' ? 'inventory-grid-item card' : 'inventory-list-item card'; // Use card for consistent base
+                    const itemElement = document.createElement('div'); itemElement.className = viewType === 'grid' ? 'inventory-grid-item card' : 'inventory-list-item card';
                     const property = App.data.properties.find(p => p.id === item.locationId);
-                    
-                    itemElement.innerHTML = `
-                        <img src="${item.photo}" alt="${item.name}" class="item-thumbnail">
-                        <div class="item-info">
-                            <h5>${item.name}</h5>
-                            <p class="item-id">ID: ${item.id}</p>
-                            <p>Loc: ${property ? property.name.substring(0,15) : 'N/A'}${item.room ? ', ' + item.room.substring(0,10) : ''}</p>
-                            <p>Cat: ${item.category}</p>
-                        </div>
-                        <div class="item-checkbox-container">
-                            <input type="checkbox" class="item-checkbox" data-item-id="${item.id}" ${App.selectedItemsForMove.includes(item.id) ? 'checked' : ''} aria-label="Select ${item.name}">
-                        </div>
-                    `;
-                    // Click entire item (not checkbox) to navigate
-                    itemElement.addEventListener('click', (e) => {
-                        if (e.target.type !== 'checkbox') {
-                            App.navigateToItemDetail(item.id);
-                        }
-                    });
+                    itemElement.innerHTML = `<img src="${item.photo || 'https://via.placeholder.com/70?text=N/A'}" alt="${item.name}" class="item-thumbnail"><div class="item-info"><h5>${item.name}</h5><p class="item-id">ID: ${item.id}</p><p>Loc: ${property ? property.name.substring(0,15) : 'N/A'}${item.room ? ', ' + item.room.substring(0,10) : ''}</p><p>Cat: ${item.category}</p></div><div class="item-checkbox-container"><input type="checkbox" class="item-checkbox" data-item-id="${item.id}" ${App.selectedItemsForMove.includes(item.id) ? 'checked' : ''} aria-label="Select ${item.name}"></div>`;
+                    itemElement.addEventListener('click', (e) => { if (e.target.type !== 'checkbox') App.navigateToItemDetail(item.id); });
                     itemElement.querySelector('.item-checkbox').addEventListener('change', App.handleItemSelection);
                     displayContainer.appendChild(itemElement);
                 });
                 App.updateSelectedCountAndActions();
             },
-
             handleItemSelection(e) {
                 const itemId = e.target.dataset.itemId;
-                if (e.target.checked) {
-                    if (!App.selectedItemsForMove.includes(itemId)) App.selectedItemsForMove.push(itemId);
-                } else {
-                    App.selectedItemsForMove = App.selectedItemsForMove.filter(id => id !== itemId);
-                }
+                if (e.target.checked) { if (!App.selectedItemsForMove.includes(itemId)) App.selectedItemsForMove.push(itemId); }
+                else { App.selectedItemsForMove = App.selectedItemsForMove.filter(id => id !== itemId); }
                 App.updateSelectedCountAndActions();
             },
-
             updateSelectedCountAndActions() {
-                const count = App.selectedItemsForMove.length;
-                document.getElementById('selectedItemCount').textContent = count;
-                const actionsPanel = document.getElementById('inventoryActionsPanel');
-                actionsPanel.style.display = count > 0 ? 'block' : 'none';
-                
-                // Show/hide designer bulk actions
+                const count = App.selectedItemsForMove.length; document.getElementById('selectedItemCount').textContent = count;
+                const actionsPanel = document.getElementById('inventoryActionsPanel'); actionsPanel.style.display = count > 0 ? 'block' : 'none';
                 const designerActions = document.getElementById('designerBulkActions');
-                if(App.currentUser.role === 'designer' && count > 0) {
-                    designerActions.classList.remove('hidden');
-                } else {
-                    designerActions.classList.add('hidden');
-                }
+                if(App.currentUser.role === 'designer' && count > 0) { designerActions.classList.remove('hidden'); } else { designerActions.classList.add('hidden'); }
             },
-            
             applyBulkInventoryAction() {
-                const action = document.getElementById('bulkActionSelect').value;
-                if (!action || App.selectedItemsForMove.length === 0) {
-                    alert("Please select an action and at least one item.");
-                    return;
-                }
+                const action = document.getElementById('bulkActionSelect').value; if (!action || App.selectedItemsForMove.length === 0) { alert("Select an action and items."); return; }
                 const itemNames = App.selectedItemsForMove.map(id => App.data.items.find(i => i.id === id)?.name).join(', ');
-                
                 if (action === "addToCollection") {
-                    const collId = prompt(`Enter Collection ID to add items: ${itemNames} to (e.g., col1, col2):`);
-                    if (collId && App.data.collections.find(c => c.id === collId)) {
-                        // Logic to add items to collection (update App.data.items)
-                        alert(`Items added to collection ${collId} (Demo).`);
-                    } else if (collId) {
-                         alert("Invalid Collection ID.");
-                    }
-                } else if (action === "editCategory") {
-                     const newCat = prompt(`Enter new Category for items: ${itemNames}`);
-                     if (newCat) {
-                        // Logic to update category (update App.data.items)
-                        alert(`Category for selected items updated to ${newCat} (Demo).`);
-                     }
+                    const collId = prompt(`Enter Collection ID for items: ${itemNames} (e.g., col1):`);
+                    if (collId && App.data.collections.find(c => c.id === collId)) { 
+                        App.selectedItemsForMove.forEach(itemId => {
+                            const item = App.data.items.find(i => i.id === itemId);
+                            if (item) {
+                                if (!item.collectionTags) item.collectionTags = [];
+                                const collection = App.data.collections.find(c=>c.id === collId);
+                                if (collection && !item.collectionTags.includes(collection.name)) { // Store by name for simplicity in demo
+                                    item.collectionTags.push(collection.name);
+                                }
+                            }
+                        });
+                        alert(`Items added to collection ${collId} (Demo).`); 
+                    } else if (collId) { alert("Invalid Collection ID."); }
+                } else if (action === "editCategory") { 
+                    const newCat = prompt(`New Category for items: ${itemNames}`); 
+                    if (newCat) { 
+                        App.selectedItemsForMove.forEach(itemId => {
+                            const item = App.data.items.find(i => i.id === itemId);
+                            if (item) item.category = newCat;
+                        });
+                        alert(`Category updated to ${newCat} (Demo).`); 
+                    } 
                 }
-                // Clear selection and update UI
-                App.selectedItemsForMove.forEach(id => {
-                    const checkbox = document.querySelector(`.item-checkbox[data-item-id="${id}"]`);
-                    if (checkbox) checkbox.checked = false;
-                });
-                App.selectedItemsForMove = [];
-                App.updateSelectedCountAndActions();
+                App.selectedItemsForMove.forEach(id => { const cb = document.querySelector(`.item-checkbox[data-item-id="${id}"]`); if (cb) cb.checked = false; });
+                App.selectedItemsForMove = []; App.updateSelectedCountAndActions(); App.renderInventoryItems(App.currentViewMode); // Re-render
             },
-
             navigateToItemDetail(itemId) {
-                const item = App.data.items.find(i => i.id === itemId);
-                if (!item) return;
-                App.currentItemDetailId = itemId;
-
-                document.getElementById('itemNameDetail').textContent = item.name;
-                document.getElementById('itemDetailMainImage').src = item.photos && item.photos.length > 0 ? item.photos[0] : (item.photo || 'https://via.placeholder.com/600x400/2c3a50/f0f0f0?text=No+Image');
+                const item = App.data.items.find(i => i.id === itemId); if (!item) return; App.currentItemDetailId = itemId;
+                document.getElementById('itemNameDetail').textContent = item.name; document.getElementById('itemDetailMainImage').src = item.photos && item.photos.length > 0 ? item.photos[0] : (item.photo || 'https://via.placeholder.com/600x400/2c3a50/f0f0f0?text=No+Image');
                 document.getElementById('itemDetailQrCode').src = item.qrCode || 'https://via.placeholder.com/120?text=No+QR';
-
-                // Thumbnails
-                const thumbsContainer = document.getElementById('itemDetailThumbnails');
-                thumbsContainer.innerHTML = '';
-                (item.photos || [item.photo]).forEach((pUrl, index) => {
-                    if (!pUrl) return;
-                    const img = document.createElement('img');
-                    img.src = pUrl; img.alt = `View ${index+1}`;
-                    if (index === 0) img.classList.add('active');
-                    img.addEventListener('click', () => { /* ... */ });
+                const thumbsContainer = document.getElementById('itemDetailThumbnails'); thumbsContainer.innerHTML = '';
+                (item.photos && item.photos.length > 0 ? item.photos : [item.photo]).forEach((pUrl, index) => {
+                    if (!pUrl) return; const img = document.createElement('img'); img.src = pUrl; img.alt = `View ${index+1} of ${item.name}`; img.setAttribute('role','option'); img.setAttribute('tabindex', '0');
+                    if (index === 0) { img.classList.add('active'); img.setAttribute('aria-selected', 'true');} else {img.setAttribute('aria-selected','false');}
+                    img.addEventListener('click', () => { document.getElementById('itemDetailMainImage').src = pUrl; thumbsContainer.querySelectorAll('img').forEach(i => {i.classList.remove('active'); i.setAttribute('aria-selected','false');}); img.classList.add('active'); img.setAttribute('aria-selected','true'); });
+                    img.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' ') img.click(); });
                     thumbsContainer.appendChild(img);
                 });
-
-                // Metadata (including new fields)
-                const metadataContainer = document.getElementById('itemDetailMetadata');
-                metadataContainer.innerHTML = '';
-                const md = (label, value, isCurrency = false) => {
-                    if (value === null || typeof value === 'undefined' || value === '') return '';
-                    let displayValue = isCurrency ? `$${Number(value).toLocaleString()}` : value;
-                    if (typeof value === 'boolean') displayValue = value ? 'Yes' : 'No';
-                    if (Array.isArray(value)) displayValue = value.join(', ') || 'None';
-                    return `<div class="metadata-item"><strong>${label}:</strong> <span>${displayValue}</span></div>`;
-                };
+                const metadataContainer = document.getElementById('itemDetailMetadata'); metadataContainer.innerHTML = '';
+                const md = (label, value, isCurrency = false) => { if (value === null || typeof value === 'undefined' || value === '') return ''; let displayValue = isCurrency ? `$${Number(value).toLocaleString()}` : value; if (typeof value === 'boolean') displayValue = value ? 'Yes' : 'No'; if (Array.isArray(value)) displayValue = value.join(', ') || 'None'; return `<div class="metadata-item"><strong>${label}:</strong> <span>${displayValue}</span></div>`; };
                 const prop = App.data.properties.find(p => p.id === item.locationId);
-                metadataContainer.innerHTML = `
-                    ${md('Unique ID', item.id)} ${md('Description', item.description)}
-                    ${md('Category', `${item.category} ${item.subcategory ? '('+item.subcategory+')' : ''}`)}
-                    ${md('Current Location', `${prop ? prop.name : 'N/A'}${item.room ? ', ' + item.room : ''}`)}
-                    ${md('Dimensions', item.dimensions)} ${md('Weight', item.weight)}
-                    ${md('Value', item.value, true)} ${md('Cost', item.cost, true)}
-                    ${md('Purchased', item.purchaseDate ? new Date(item.purchaseDate).toLocaleDateString() : null)}
-                    ${md('Purchase Loc.', item.purchaseLocation)} ${md('Condition', item.condition)}
-                    ${md('Handling', item.handling)} ${md('Collections', item.collectionTags)}
-                    ${md('Seasonal Tags', item.seasonalTags)} ${md('Designer', item.designer)}
-                    ${md('Materials', item.materials)} ${md('Fragile', item.fragile)} ${md('Insured', item.insured)}
-                `;
-                // Location History (similar to before)
-                const historyContainer = document.getElementById('itemDetailLocationHistory');
-                historyContainer.innerHTML = '';
-                if (item.locationHistory && item.locationHistory.length > 0) {
-                    item.locationHistory.forEach(event => { /* ... */ });
-                } else { historyContainer.innerHTML = '<li class="text-muted text-sm">No location history.</li>'; }
-
+                metadataContainer.innerHTML = `${md('Unique ID', item.id)} ${md('Description', item.description)} ${md('Category', `${item.category} ${item.subcategory ? '('+item.subcategory+')' : ''}`)} ${md('Current Location', `${prop ? prop.name : 'N/A'}${item.room ? ', ' + item.room : ''}`)} ${md('Dimensions', item.dimensions)} ${md('Weight', item.weight)} ${md('Value', item.value, true)} ${md('Cost', item.cost, true)} ${md('Purchased', item.purchaseDate ? new Date(item.purchaseDate).toLocaleDateString() : null)} ${md('Purchase Loc.', item.purchaseLocation)} ${md('Condition', item.condition)} ${md('Handling', item.handling)} ${md('Collections', item.collectionTags)} ${md('Seasonal Tags', item.seasonalTags)} ${md('Designer', item.designer)} ${md('Materials', item.materials)} ${md('Fragile', item.fragile)} ${md('Insured', item.insured)}`;
+                const historyContainer = document.getElementById('itemDetailLocationHistory'); historyContainer.innerHTML = '';
+                if (item.locationHistory && item.locationHistory.length > 0) { item.locationHistory.forEach(event => {const li = document.createElement('li');li.className = 'timeline-event';li.innerHTML = `<div class="timeline-date">${new Date(event.date).toLocaleDateString()}</div><div class="timeline-details">Moved from ${event.from} to ${event.to}</div>`; historyContainer.appendChild(li); }); } else { historyContainer.innerHTML = '<li class="text-muted text-sm">No location history.</li>'; }
+                document.getElementById('editItemBtn').classList.toggle('hidden', App.currentUser.role !== 'designer');
                 App.navigateTo('itemDetailScreen');
             },
-            
-            editCurrentItemDetail() {
-                const item = App.data.items.find(i => i.id === App.currentItemDetailId);
-                if (!item) return;
-                App.resetAddItemForm(item); // Pass item to prefill
-                App.navigateTo('addItemScreen');
-            },
-
+            editCurrentItemDetail() { const item = App.data.items.find(i => i.id === App.currentItemDetailId); if (!item) return; App.editingItemId = item.id; App.resetAddItemForm(item); App.navigateTo('addItemScreen'); },
             resetAddItemForm(itemToEdit = null) {
-                const form = document.getElementById('addItemForm');
-                form.reset();
-                document.getElementById('itemImagePreview').classList.add('hidden');
-                document.getElementById('addItemScreenTitle').textContent = itemToEdit ? "Edit Item" : "Add New Item";
-                document.getElementById('editingItemId').value = itemToEdit ? itemToEdit.id : "";
-
+                const form = document.getElementById('addItemForm'); form.reset(); document.getElementById('itemImagePreview').classList.add('hidden').src="#";
+                document.getElementById('addItemScreenTitle').textContent = itemToEdit ? `Edit Item: ${itemToEdit.name}` : "Add New Item";
+                document.getElementById('editingItemId').value = itemToEdit ? itemToEdit.id : ""; App.editingItemId = itemToEdit ? itemToEdit.id : null; // Set App level tracker
                 if (itemToEdit) {
-                    document.getElementById('itemName').value = itemToEdit.name || "";
-                    document.getElementById('itemCategory').value = itemToEdit.category || "";
-                    document.getElementById('itemSubcategory').value = itemToEdit.subcategory || "";
-                    document.getElementById('itemDescription').value = itemToEdit.description || "";
-                    document.getElementById('itemDesigner').value = itemToEdit.designer || "";
-                    document.getElementById('itemMaterials').value = itemToEdit.materials || "";
-                    document.getElementById('itemValue').value = itemToEdit.value || "";
-                    document.getElementById('itemCost').value = itemToEdit.cost || "";
-                    document.getElementById('itemPurchaseDate').value = itemToEdit.purchaseDate || "";
-                    document.getElementById('itemPurchaseLocation').value = itemToEdit.purchaseLocation || "";
-                    document.getElementById('itemLocationProperty').value = itemToEdit.locationId || "";
-                    document.getElementById('itemLocationRoom').value = itemToEdit.room || "";
-                    document.getElementById('itemDimensions').value = itemToEdit.dimensions || "";
-                    document.getElementById('itemWeight').value = itemToEdit.weight || "";
-                    document.getElementById('itemCondition').value = itemToEdit.condition || "Excellent";
-                    document.getElementById('itemHandlingInstructions').value = itemToEdit.handling || "";
-                    document.getElementById('itemCollectionTags').value = (itemToEdit.collectionTags || []).join(', ');
-                    document.getElementById('itemSeasonalTags').value = (itemToEdit.seasonalTags || []).join(', ');
-                    document.getElementById('itemFragile').checked = itemToEdit.fragile || false;
-                    document.getElementById('itemInsured').checked = itemToEdit.insured || false;
-                    if (itemToEdit.photo) {
-                        document.getElementById('itemImagePreview').src = itemToEdit.photo;
-                        document.getElementById('itemImagePreview').classList.remove('hidden');
-                    }
+                    document.getElementById('itemName').value = itemToEdit.name || ""; document.getElementById('itemCategory').value = itemToEdit.category || "";
+                    document.getElementById('itemSubcategory').value = itemToEdit.subcategory || ""; document.getElementById('itemDescription').value = itemToEdit.description || "";
+                    document.getElementById('itemDesigner').value = itemToEdit.designer || ""; document.getElementById('itemMaterials').value = itemToEdit.materials || "";
+                    document.getElementById('itemValue').value = itemToEdit.value || ""; document.getElementById('itemCost').value = itemToEdit.cost || "";
+                    document.getElementById('itemPurchaseDate').value = itemToEdit.purchaseDate || ""; document.getElementById('itemPurchaseLocation').value = itemToEdit.purchaseLocation || "";
+                    document.getElementById('itemLocationProperty').value = itemToEdit.locationId || ""; document.getElementById('itemLocationRoom').value = itemToEdit.room || "";
+                    document.getElementById('itemDimensions').value = itemToEdit.dimensions || ""; document.getElementById('itemWeight').value = itemToEdit.weight || "";
+                    document.getElementById('itemCondition').value = itemToEdit.condition || "Excellent"; document.getElementById('itemHandlingInstructions').value = itemToEdit.handling || "";
+                    document.getElementById('itemCollectionTags').value = (itemToEdit.collectionTags || []).join(', '); document.getElementById('itemSeasonalTags').value = (itemToEdit.seasonalTags || []).join(', ');
+                    document.getElementById('itemFragile').checked = itemToEdit.fragile || false; document.getElementById('itemInsured').checked = itemToEdit.insured || false;
+                    if (itemToEdit.photo && !itemToEdit.photo.includes('via.placeholder.com')) { document.getElementById('itemImagePreview').src = itemToEdit.photo; document.getElementById('itemImagePreview').classList.remove('hidden'); }
                 }
             },
-            
-            previewItemImage(event) {
-                const reader = new FileReader();
-                reader.onload = () => {
-                    const preview = document.getElementById('itemImagePreview');
-                    preview.src = reader.result;
-                    preview.classList.remove('hidden');
-                }
-                if (event.target.files[0]) {
-                    reader.readAsDataURL(event.target.files[0]);
-                }
-            },
-
+            previewItemImage(event) { const reader = new FileReader(); reader.onload = () => { const preview = document.getElementById('itemImagePreview'); preview.src = reader.result; preview.classList.remove('hidden'); }; if (event.target.files[0]) { reader.readAsDataURL(event.target.files[0]); } },
             simulateAIGuess() {
-                const fileInput = document.getElementById('itemImageUpload');
-                if (!fileInput.files || fileInput.files.length === 0) {
-                    alert("Please select an image first for AI guessing (Demo).");
-                    return;
-                }
-                // Simulate AI processing
-                const aiSuggestions = [
-                    { name: "Antique Wooden Chair", category: "Furniture", subcategory: "Seating", materials: "Wood, Fabric", description: "Possibly 19th century." },
-                    { name: "Modern Abstract Painting", category: "Art", subcategory: "Painting", materials: "Canvas, Oil", description: "Large colorful piece." },
-                    { name: "Designer Handbag", category: "Clothing", subcategory: "Accessories", materials: "Leather", description: "Luxury brand item." }
-                ];
+                const fileInput = document.getElementById('itemImageUpload'); if (!fileInput.files || fileInput.files.length === 0) { alert("Select an image first (Demo)."); return; }
+                const aiSuggestions = [ { name: "Antique Wooden Chair", category: "Furniture", subcategory: "Seating", materials: "Wood, Fabric", description: "Possibly 19th century." }, { name: "Modern Abstract Painting", category: "Art", subcategory: "Painting", materials: "Canvas, Oil", description: "Large colorful piece." }, { name: "Designer Handbag", category: "Clothing", subcategory: "Accessories", materials: "Leather", description: "Luxury brand item." } ];
                 const suggestion = aiSuggestions[Math.floor(Math.random() * aiSuggestions.length)];
-                
-                document.getElementById('itemName').value = suggestion.name;
-                document.getElementById('itemCategory').value = suggestion.category;
-                document.getElementById('itemSubcategory').value = suggestion.subcategory;
-                document.getElementById('itemMaterials').value = suggestion.materials;
-                document.getElementById('itemDescription').value = (document.getElementById('itemDescription').value + " " + suggestion.description).trim();
-                alert(`AI Suggestion (Demo):\nName: ${suggestion.name}\nCategory: ${suggestion.category}\nDetails added to description.`);
+                document.getElementById('itemName').value = suggestion.name; document.getElementById('itemCategory').value = suggestion.category; document.getElementById('itemSubcategory').value = suggestion.subcategory; document.getElementById('itemMaterials').value = suggestion.materials; document.getElementById('itemDescription').value = (document.getElementById('itemDescription').value + " " + suggestion.description).trim();
+                alert(`AI Suggestion (Demo):\nName: ${suggestion.name}\nCategory: ${suggestion.category}`);
             },
-
             handleSaveItem(e) {
-                e.preventDefault();
-                const editingId = document.getElementById('editingItemId').value;
+                e.preventDefault(); const editingId = App.editingItemId;
                 const newItemData = {
-                    id: editingId || "ITEM-" + String(App.data.items.length + 1).padStart(3, '0'),
+                    id: editingId || "ITEM-" + String(App.data.items.length + 1 + Math.floor(Math.random()*1000)).padStart(3, '0'),
                     name: document.getElementById('itemName').value,
-                    photo: document.getElementById('itemImagePreview').src.startsWith('data:') ? document.getElementById('itemImagePreview').src : (editingId ? App.data.items.find(i=>i.id===editingId).photo : 'https://via.placeholder.com/150?text=New+Item'), // Keep old photo if not changed
-                    // ... (gather all other form fields similar to resetAddItemForm)
-                    category: document.getElementById('itemCategory').value,
-                    subcategory: document.getElementById('itemSubcategory').value,
-                    description: document.getElementById('itemDescription').value,
-                    value: parseFloat(document.getElementById('itemValue').value) || 0,
-                    cost: parseFloat(document.getElementById('itemCost').value) || 0,
-                    purchaseDate: document.getElementById('itemPurchaseDate').value,
-                    purchaseLocation: document.getElementById('itemPurchaseLocation').value,
-                    locationId: document.getElementById('itemLocationProperty').value,
-                    room: document.getElementById('itemLocationRoom').value,
-                    // ... and so on for all fields
-                    collectionTags: document.getElementById('itemCollectionTags').value.split(',').map(t=>t.trim()).filter(Boolean),
-                    fragile: document.getElementById('itemFragile').checked,
-                    insured: document.getElementById('itemInsured').checked,
-                    locationHistory: editingId ? App.data.items.find(i=>i.id===editingId).locationHistory : [{date: new Date().toISOString().split('T')[0], from: "Newly Added", to: document.getElementById('itemLocationProperty').value + ", " + document.getElementById('itemLocationRoom').value }]
+                    photo: document.getElementById('itemImagePreview').src.startsWith('data:') ? document.getElementById('itemImagePreview').src : (editingId && App.data.items.find(i=>i.id===editingId).photo ? App.data.items.find(i=>i.id===editingId).photo : 'https://via.placeholder.com/150?text=New'),
+                    photos: document.getElementById('itemImagePreview').src.startsWith('data:') ? [document.getElementById('itemImagePreview').src] : (editingId && App.data.items.find(i=>i.id===editingId).photos ? App.data.items.find(i=>i.id===editingId).photos : ['https://via.placeholder.com/150?text=New']),
+                    category: document.getElementById('itemCategory').value, subcategory: document.getElementById('itemSubcategory').value, description: document.getElementById('itemDescription').value,
+                    value: parseFloat(document.getElementById('itemValue').value) || null, cost: parseFloat(document.getElementById('itemCost').value) || null,
+                    purchaseDate: document.getElementById('itemPurchaseDate').value || null, purchaseLocation: document.getElementById('itemPurchaseLocation').value || null,
+                    locationId: document.getElementById('itemLocationProperty').value, room: document.getElementById('itemLocationRoom').value || null,
+                    dimensions: document.getElementById('itemDimensions').value || null, weight: document.getElementById('itemWeight').value || null, condition: document.getElementById('itemCondition').value || null,
+                    handling: document.getElementById('itemHandlingInstructions').value || null, designer: document.getElementById('itemDesigner').value || null, materials: document.getElementById('itemMaterials').value || null,
+                    collectionTags: document.getElementById('itemCollectionTags').value.split(',').map(t=>t.trim()).filter(Boolean), seasonalTags: document.getElementById('itemSeasonalTags').value.split(',').map(t=>t.trim()).filter(Boolean),
+                    fragile: document.getElementById('itemFragile').checked, insured: document.getElementById('itemInsured').checked,
+                    qrCode: `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${editingId || "ITEM-" + String(App.data.items.length + 1 + Math.floor(Math.random()*1000)).padStart(3, '0') }`,
+                    locationHistory: editingId ? (App.data.items.find(i=>i.id===editingId).locationHistory || []) : [{date: new Date().toISOString().split('T')[0], from: "System Entry", to: `${App.data.properties.find(p=>p.id===document.getElementById('itemLocationProperty').value)?.name || 'N/A'}, ${document.getElementById('itemLocationRoom').value || 'N/A'}` }]
                 };
-
                 if (editingId) {
-                    const index = App.data.items.findIndex(i => i.id === editingId);
-                    App.data.items[index] = { ...App.data.items[index], ...newItemData }; // Merge to keep old fields not in form
-                    alert("Item updated successfully!");
-                } else {
-                    App.data.items.push(newItemData);
-                    alert("Item added successfully!");
-                }
-                App.navigateToItemDetail(newItemData.id); // Go to detail of new/edited item
+                    const index = App.data.items.findIndex(i => i.id === editingId); App.data.items[index] = { ...App.data.items[index], ...newItemData };
+                    alert("Item updated!"); App.editingItemId = null;
+                } else { App.data.items.push(newItemData); alert("Item added!"); }
+                App.data.properties.forEach(p => { p.itemCount = App.data.items.filter(i => i.locationId === p.id).length; p.totalValue = App.data.items.filter(i => i.locationId === p.id).reduce((sum, i) => sum + (i.value || 0), 0); });
+                App.navigateToItemDetail(newItemData.id);
             },
-
-            populateMoveRequestFormWithSelectedItems() { /* ... as before ... */ },
-            clearMoveRequestFormItems() { /* ... as before ... */ },
-            initMoveRequestFromSelection() { /* ... as before ... */ },
-            initMoveRequestFromItemDetail() { /* ... as before ... */ },
-            handleMoveRequestSubmit(e) { /* ... as before, but maybe navigate to new Move Detail Screen ... */
-                 e.preventDefault();
-                 // ... (validation and data creation as before)
-                 const newMoveId = "MOVE-" + String(App.data.moves.length + 1).padStart(3, '0');
-                 // ... (add to App.data.moves)
-                 // After creating move:
-                 App.navigateToMoveDetail(newMoveId); // Navigate to the detail of the newly created move
+            populateMoveRequestFormWithSelectedItems() { const container = document.getElementById('moveRequestSelectedItems'); container.innerHTML = ''; document.getElementById('moveRequestItemCount').textContent = App.selectedItemsForMove.length; if (App.selectedItemsForMove.length === 0) { container.innerHTML = '<p class="text-muted">Select items from inventory.</p>'; return; } App.selectedItemsForMove.forEach(itemId => { const item = App.data.items.find(i => i.id === itemId); if (item) { const div = document.createElement('div'); div.className = 'item-preview'; div.innerHTML = `<img src="${item.photo}" alt="${item.name}"> <span>${item.name} (ID: ${item.id})</span>`; container.appendChild(div); } }); },
+            clearMoveRequestFormItems() { document.getElementById('moveRequestSelectedItems').innerHTML = '<p class="text-muted">Select items from inventory.</p>'; document.getElementById('moveRequestItemCount').textContent = 0; },
+            initMoveRequestFromSelection() { if (App.selectedItemsForMove.length > 0) App.navigateTo('moveRequestScreen'); else alert("Select items first."); },
+            initMoveRequestFromItemDetail() { if (App.currentItemDetailId) { App.selectedItemsForMove = [App.currentItemDetailId]; App.navigateTo('moveRequestScreen'); } },
+            handleMoveRequestSubmit(e) {
+                e.preventDefault(); const originProp = document.getElementById('moveOriginProperty').value; const destProp = document.getElementById('moveDestinationProperty').value; const date = document.getElementById('moveDesiredDate').value;
+                if (App.selectedItemsForMove.length === 0 || !originProp || !destProp || !date) { alert('Fill all required fields.'); return; }
+                const newMoveId = "MOVE-" + String(App.data.moves.length + 1 + Math.floor(Math.random()*100)).padStart(3, '0');
+                const newMove = { id: newMoveId, requestDate: new Date().toISOString().split('T')[0], scheduledDate: "N/A", origin: { propertyId: originProp, room: document.getElementById('moveOriginRoom').value }, destination: { propertyId: destProp, room: document.getElementById('moveDestinationRoom').value }, itemIds: [...App.selectedItemsForMove], status: "Requested", notes: document.getElementById('moveClientNotes').value, history: [{status: "Requested", date: new Date().toISOString().split('T')[0]}], communication: [] };
+                App.data.moves.push(newMove); App.selectedItemsForMove = []; document.getElementById('moveRequestForm').reset(); App.updateSelectedCountAndActions(); App.navigateToMoveDetail(newMoveId);
             },
-
             renderMoveManagementList() {
-                const container = document.getElementById('moveListContainer');
-                container.innerHTML = '';
-                if (App.data.moves.length === 0) { /* ... */ }
-
-                App.data.moves.forEach(move => {
-                    const div = document.createElement('div');
-                    // ... (status class and basic info as before) ...
-                    const originProp = App.data.properties.find(p => p.id === move.origin.propertyId)?.name || "N/A";
-                    const destProp = App.data.properties.find(p => p.id === move.destination.propertyId)?.name || "N/A";
-                    const statusClass = `move-status-${move.status.toLowerCase().replace(/\s+/g, '')}`;
-                    div.className = `move-list-item ${statusClass} card`; // Use card for base style
-                    div.innerHTML = `
-                        <div class="move-header">
-                            <span class="move-id">${move.id}</span>
-                            <span class="move-status">${move.status}</span>
-                        </div>
-                        <div class="move-details">
-                            <p><strong>From:</strong> ${originProp} ${move.origin.room ? '('+move.origin.room+')' : ''}</p>
-                            <p><strong>To:</strong> ${destProp} ${move.destination.room ? '('+move.destination.room+')' : ''}</p>
-                            <p><strong>Scheduled:</strong> ${move.scheduledDate !== "N/A" ? new Date(move.scheduledDate).toLocaleDateString() : 'Pending'}</p>
-                            <p><strong>Items:</strong> ${move.itemIds.length}</p>
-                        </div>
-                        <button class="btn btn-secondary btn-sm w-auto mt-1" data-move-id="${move.id}">View Details</button>
-                    `;
-                    div.querySelector('button').addEventListener('click', (e) => App.navigateToMoveDetail(e.currentTarget.dataset.moveId));
-                    container.appendChild(div);
+                const container = document.getElementById('moveListContainer'); container.innerHTML = ''; if (App.data.moves.length === 0) { container.innerHTML = '<p class="text-muted">No moves recorded.</p>'; return;}
+                const sortedMoves = [...App.data.moves].sort((a,b) => new Date(b.requestDate) - new Date(a.requestDate));
+                sortedMoves.forEach(move => {
+                    const div = document.createElement('div'); const origin = App.data.properties.find(p => p.id === move.origin.propertyId); const destination = App.data.properties.find(p => p.id === move.destination.propertyId);
+                    const statusClass = `move-status-${move.status.toLowerCase().replace(/\s+/g, '')}`; div.className = `move-list-item ${statusClass} card`;
+                    div.innerHTML = `<div class="move-header"><span class="move-id">${move.id}</span><span class="move-status">${move.status}</span></div><div class="move-details"><p><strong>From:</strong> ${origin ? origin.name : 'N/A'} ${move.origin.room ? '('+move.origin.room+')' : ''}</p><p><strong>To:</strong> ${destination ? destination.name : 'N/A'} ${move.destination.room ? '('+move.destination.room+')' : ''}</p><p><strong>Scheduled:</strong> ${move.scheduledDate !== "N/A" ? new Date(move.scheduledDate).toLocaleDateString() : 'Pending'}</p><p><strong>Items:</strong> ${move.itemIds.length}</p></div><button class="btn btn-secondary btn-sm w-auto mt-1" data-move-id="${move.id}">View Details</button>`;
+                    div.querySelector('button').addEventListener('click', (e) => App.navigateToMoveDetail(e.currentTarget.dataset.moveId)); container.appendChild(div);
                 });
             },
-
             navigateToMoveDetail(moveId) {
-                App.currentMoveDetailId = moveId;
-                const move = App.data.moves.find(m => m.id === moveId);
-                if (!move) { App.navigateTo('moveManagementScreen'); return; }
-
-                document.getElementById('moveDetailId').textContent = `Move ${move.id}`;
-                document.getElementById('moveDetailStatus').textContent = move.status;
+                App.currentMoveDetailId = moveId; const move = App.data.moves.find(m => m.id === moveId); if (!move) { App.navigateTo('moveManagementScreen'); return; }
+                document.getElementById('moveDetailId').textContent = `Move ${move.id}`; document.getElementById('moveDetailStatus').textContent = move.status;
                 document.getElementById('moveDetailOrigin').textContent = `${App.data.properties.find(p=>p.id===move.origin.propertyId)?.name || 'N/A'} (${move.origin.room || 'N/A'})`;
                 document.getElementById('moveDetailDestination').textContent = `${App.data.properties.find(p=>p.id===move.destination.propertyId)?.name || 'N/A'} (${move.destination.room || 'N/A'})`;
                 document.getElementById('moveDetailScheduledDate').textContent = move.scheduledDate !== "N/A" ? new Date(move.scheduledDate).toLocaleDateString() : 'Pending';
-                
-                // Visual Progress Tracker
-                const progressSteps = ["Requested", "Scheduled", "Crew Assigned", "In Transit", "Completed"];
-                const trackerUl = document.getElementById('moveDetailProgressTracker');
-                trackerUl.innerHTML = '';
-                let moveIsActive = false;
+                const progressSteps = ["Requested", "Scheduled", "Crew Assigned", "In Transit", "Completed"]; const trackerUl = document.getElementById('moveDetailProgressTracker'); trackerUl.innerHTML = '';
                 progressSteps.forEach(step => {
-                    const li = document.createElement('li');
-                    li.textContent = step;
-                    const historyEntry = move.history?.find(h => h.status === step);
-                    if (historyEntry) {
-                        li.classList.add('completed');
-                        li.title = `Completed on ${new Date(historyEntry.date).toLocaleDateString()}`;
-                    }
-                    if (step === move.status && !historyEntry) { // If current status is not yet marked completed in history
-                        li.classList.add('active');
-                        moveIsActive = true;
-                    } else if (move.status === "Completed" && step === "Completed") { // Ensure completed is visually marked if it's the final status
-                        li.classList.add('completed');
-                    }
+                    const li = document.createElement('li'); li.textContent = step; const historyEntry = move.history?.find(h => h.status === step);
+                    if (historyEntry) { li.classList.add('completed'); li.title = `Completed on ${new Date(historyEntry.date).toLocaleDateString()}`; }
+                    if (step === move.status && !historyEntry) { li.classList.add('active'); } else if (move.status === "Completed" && step === "Completed") { li.classList.add('completed');}
                     trackerUl.appendChild(li);
                 });
-
-
-                // Items in move
-                const itemsListContainer = document.getElementById('moveDetailItemsList');
-                itemsListContainer.innerHTML = '';
-                document.getElementById('moveDetailItemCount').textContent = move.itemIds.length;
-                move.itemIds.forEach(itemId => {
-                    const item = App.data.items.find(i => i.id === itemId);
-                    if (item) {
-                        const itemDiv = document.createElement('div');
-                        itemDiv.className = 'inventory-list-item card'; // Re-use item list style
-                        itemDiv.innerHTML = `<img src="${item.photo}" class="item-thumbnail"> <div class="item-info"><h5>${item.name}</h5><p class="item-id">${item.id}</p></div>`;
-                        itemDiv.addEventListener('click', () => App.navigateToItemDetail(item.id));
-                        itemsListContainer.appendChild(itemDiv);
-                    }
-                });
-
-                // Communication Log
-                App.renderMoveCommunicationLog(moveId);
-                App.navigateTo('moveDetailScreen');
+                const itemsListContainer = document.getElementById('moveDetailItemsList'); itemsListContainer.innerHTML = ''; document.getElementById('moveDetailItemCount').textContent = move.itemIds.length;
+                move.itemIds.forEach(itemId => { const item = App.data.items.find(i => i.id === itemId); if (item) { const itemDiv = document.createElement('div'); itemDiv.className = 'inventory-list-item card'; itemDiv.innerHTML = `<img src="${item.photo}" class="item-thumbnail"> <div class="item-info"><h5>${item.name}</h5><p class="item-id">${item.id}</p></div>`; itemDiv.addEventListener('click', () => App.navigateToItemDetail(item.id)); itemsListContainer.appendChild(itemDiv); } });
+                App.renderMoveCommunicationLog(moveId); App.navigateTo('moveDetailScreen');
             },
-            
             renderMoveCommunicationLog(moveId) {
-                const move = App.data.moves.find(m => m.id === moveId);
-                const logContainer = document.getElementById('moveCommunicationLog');
-                logContainer.innerHTML = '';
-                if (!move || !move.communication || move.communication.length === 0) {
-                    logContainer.innerHTML = '<p class="text-muted text-sm">No messages yet.</p>';
-                    return;
-                }
-                move.communication.forEach(msg => {
-                    const p = document.createElement('p');
-                    p.className = 'text-sm mb-1';
-                    p.innerHTML = `<strong>${msg.user} (${new Date(msg.date).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}):</strong> ${msg.text}`;
-                    logContainer.appendChild(p);
-                });
-                logContainer.scrollTop = logContainer.scrollHeight; // Scroll to bottom
+                const move = App.data.moves.find(m => m.id === moveId); const logContainer = document.getElementById('moveCommunicationLog'); logContainer.innerHTML = '';
+                if (!move || !move.communication || move.communication.length === 0) { logContainer.innerHTML = '<p class="text-muted text-sm">No messages yet.</p>'; return; }
+                move.communication.forEach(msg => { const p = document.createElement('p'); p.className = 'text-sm mb-1'; p.innerHTML = `<strong>${msg.user} (${new Date(msg.date).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}):</strong> ${msg.text}`; logContainer.appendChild(p); });
+                logContainer.scrollTop = logContainer.scrollHeight;
             },
-
             sendMoveMessage() {
-                const moveId = App.currentMoveDetailId;
-                const move = App.data.moves.find(m => m.id === moveId);
-                const messageText = document.getElementById('newMoveMessage').value.trim();
-                if (!move || !messageText) return;
-
-                if (!move.communication) move.communication = [];
-                move.communication.push({
-                    user: App.currentUser.role.charAt(0).toUpperCase() + App.currentUser.role.slice(1), // Capitalize role
-                    text: messageText,
-                    date: new Date().toISOString()
-                });
-                document.getElementById('newMoveMessage').value = '';
-                App.renderMoveCommunicationLog(moveId);
+                const moveId = App.currentMoveDetailId; const move = App.data.moves.find(m => m.id === moveId); const messageText = document.getElementById('newMoveMessage').value.trim();
+                if (!move || !messageText) return; if (!move.communication) move.communication = [];
+                move.communication.push({ user: App.currentUser.role.charAt(0).toUpperCase() + App.currentUser.role.slice(1), text: messageText, date: new Date().toISOString() });
+                document.getElementById('newMoveMessage').value = ''; App.renderMoveCommunicationLog(moveId);
             },
-
-
             renderPropertyManagement() {
-                 const container = document.getElementById('propertyManagementCardsContainer');
-                container.innerHTML = '';
+                const container = document.getElementById('propertyManagementCardsContainer'); container.innerHTML = '';
                 App.data.properties.forEach(prop => {
-                    const card = document.createElement('div');
-                    card.className = 'property-manage-card card';
-                    card.innerHTML = `
-                        <img src="${prop.photo}" alt="${prop.name}">
-                        <div class="property-manage-card-content">
-                            <h4>${prop.name}</h4>
-                            <p class="text-muted-light text-sm">${prop.address}</p>
-                            <div class="property-stats mt-1">
-                                <p><strong>Type:</strong> ${prop.type}</p>
-                                <p><strong>Rooms:</strong> ${prop.rooms}</p>
-                                <p><strong>Item Count:</strong> ${prop.itemCount}</p>
-                                <p><strong>Est. Value:</strong> $${prop.totalValue.toLocaleString()}</p>
-                            </div>
-                             <button class="btn btn-secondary btn-sm w-auto mt-1" data-target="inventoryBrowserScreen" data-filter-property="${prop.id}">View Items</button>
-                             <button class="btn btn-primary btn-sm w-auto mt-1 designer-only ${App.currentUser.role !== 'designer' ? 'hidden' : ''}" data-property-id="${prop.id}" onclick="App.contextualAddItem('${prop.id}')">Add Item to Property</button>
-                        </div>
-                    `;
-                    card.querySelector('button[data-target]').addEventListener('click', (e) => { /* ... */ });
+                    const card = document.createElement('div'); card.className = 'property-manage-card card';
+                    card.innerHTML = `<img src="${prop.photo}" alt="${prop.name}"><div class="property-manage-card-content"><h4>${prop.name}</h4><p class="text-muted-light text-sm">${prop.address}</p><div class="property-stats mt-1"><p><strong>Type:</strong> ${prop.type}</p><p><strong>Rooms:</strong> ${prop.rooms}</p><p><strong>Item Count:</strong> ${prop.itemCount}</p><p><strong>Est. Value:</strong> $${prop.totalValue.toLocaleString()}</p></div><button class="btn btn-secondary btn-sm w-auto mt-1" data-target="inventoryBrowserScreen" data-filter-property="${prop.id}">View Items</button><button class="btn btn-primary btn-sm w-auto mt-1 designer-only ${App.currentUser.role !== 'designer' ? 'hidden' : ''}" data-property-id="${prop.id}" onclick="App.contextualAddItem('${prop.id}')">Add Item to Property</button></div>`;
+                    card.querySelector('button[data-target]').addEventListener('click', (e) => { e.preventDefault(); const propId = e.currentTarget.dataset.filterProperty; App.navigateTo('inventoryBrowserScreen'); setTimeout(() => { document.getElementById('filterProperty').value = propId; App.renderInventoryItems();},0); });
                     container.appendChild(card);
                 });
+                document.getElementById('addNewPropertyBtn').classList.toggle('hidden', App.currentUser.role !== 'designer');
             },
-            contextualAddItem(propertyId) {
-                App.resetAddItemForm(); // Clear form
-                document.getElementById('itemLocationProperty').value = propertyId; // Pre-fill property
-                App.navigateTo('addItemScreen');
-            },
-
+            contextualAddItem(propertyId) { App.resetAddItemForm(); document.getElementById('itemLocationProperty').value = propertyId; App.navigateTo('addItemScreen'); },
             renderCollectionsList() {
-                const container = document.getElementById('collectionsListContainer');
-                container.innerHTML = '';
-                if (App.data.collections.length === 0) {
-                    container.innerHTML = '<p class="text-muted">No collections created yet.</p>'; return;
-                }
+                const container = document.getElementById('collectionsListContainer'); container.innerHTML = '';
+                if (App.data.collections.length === 0) { container.innerHTML = '<p class="text-muted">No collections.</p>'; return; }
                 App.data.collections.forEach(col => {
-                    const div = document.createElement('div');
-                    div.className = 'card d-flex justify-between align-center';
-                    div.innerHTML = `
-                        <span>${col.name} (ID: ${col.id})</span>
-                        <div>
-                            <button class="btn btn-secondary btn-sm w-auto" data-id="${col.id}">View Items</button>
-                            <button class="btn btn-danger btn-sm w-auto" data-id="${col.id}">X</button>
-                        </div>
-                    `;
-                    // Add event listeners for view/delete (simplified)
-                    div.querySelector('.btn-secondary').addEventListener('click', (e) => {
-                        document.getElementById('filterCollection').value = e.currentTarget.dataset.id;
-                        App.navigateTo('inventoryBrowserScreen');
-                    });
-                    div.querySelector('.btn-danger').addEventListener('click', (e) => {
-                        if (confirm(`Delete collection "${col.name}"? This won't delete items.`)) {
-                            App.data.collections = App.data.collections.filter(c => c.id !== e.currentTarget.dataset.id);
-                            App.renderCollectionsList();
-                        }
-                    });
+                    const div = document.createElement('div'); div.className = 'card d-flex justify-between align-center';
+                    div.innerHTML = `<span>${col.name} (ID: ${col.id})</span><div><button class="btn btn-secondary btn-sm w-auto" data-id="${col.id}">View Items</button><button class="btn btn-danger btn-sm w-auto" data-id="${col.id}">X</button></div>`;
+                    div.querySelector('.btn-secondary').addEventListener('click', (e) => { document.getElementById('filterCollection').value = e.currentTarget.dataset.id; App.navigateTo('inventoryBrowserScreen'); });
+                    div.querySelector('.btn-danger').addEventListener('click', (e) => { if (confirm(`Delete collection "${col.name}"?`)) { App.data.collections = App.data.collections.filter(c => c.id !== e.currentTarget.dataset.id); App.renderCollectionsList(); } });
                     container.appendChild(div);
                 });
             },
             createCollection() {
-                const name = document.getElementById('newCollectionName').value.trim();
-                if (!name) { alert("Please enter a collection name."); return; }
-                const newId = "col" + (App.data.collections.length + 1);
-                App.data.collections.push({ id: newId, name: name });
-                document.getElementById('newCollectionName').value = '';
-                App.renderCollectionsList();
-                alert(`Collection "${name}" created.`);
+                const name = document.getElementById('newCollectionName').value.trim(); if (!name) { alert("Enter name."); return; }
+                const newId = "col" + (App.data.collections.length + 1 + Math.floor(Math.random()*100)); App.data.collections.push({ id: newId, name: name });
+                document.getElementById('newCollectionName').value = ''; App.renderCollectionsList(); alert(`Collection "${name}" created.`);
             },
-            
-            renderSettingsScreen() {
-                // User info already updated on login
-                // Placeholder for other settings logic if needed
-            }
+            renderSettingsScreen() { /* User info updated on login. Additional settings logic can go here. */ }
 
-        };
+        }; // End of App object
 
         document.addEventListener('DOMContentLoaded', App.init);
     </script>
